@@ -7,7 +7,7 @@ import typescript from 'rollup-plugin-typescript2';
 import strip from '@rollup/plugin-strip';
 import html from '@rollup/plugin-html';
 export default [{
-    input: './src/FilmDBApp.ts',
+    input: './src/FilmDB.ts',
     onwarn: function(warning, warn) {
         return;
     },
@@ -28,7 +28,7 @@ export default [{
     ],
     output: [getOutput(2019), getOutput(2018), getOutput(2017), getOutput(2016), getOutput(2015)]
 }, {
-    input: './src/FilmDBApp.ts',
+    input: './src/FilmDB.ts',
     onwarn: function(warning, warn) {
         return;
     },
@@ -86,17 +86,17 @@ function template({files}) {
         console.log(chunk.fileName);
         if (chunk.isEntry) {
             let fileName = chunk.fileName;
-            if (fileName.startsWith('FilmDBApp.es5')) {
+            if (fileName.startsWith('FilmDB.es5')) {
                 entryChunkES5 = fileName;
-            } else if (fileName.startsWith('FilmDBApp.2015')) {
+            } else if (fileName.startsWith('FilmDB.2015')) {
                 entryChunk2015 = fileName;
-            } else if (fileName.startsWith('FilmDBApp.2016')) {
+            } else if (fileName.startsWith('FilmDB.2016')) {
                 entryChunk2016 = fileName;
-            } else if (fileName.startsWith('FilmDBApp.2017')) {
+            } else if (fileName.startsWith('FilmDB.2017')) {
                 entryChunk2017 = fileName;
-            } else if (fileName.startsWith('FilmDBApp.2018')) {
+            } else if (fileName.startsWith('FilmDB.2018')) {
                 entryChunk2018 = fileName;
-            } else if (fileName.startsWith('FilmDBApp.2019')) {
+            } else if (fileName.startsWith('FilmDB.2019')) {
                 entryChunk2019 = fileName;
             }
         }
@@ -116,7 +116,7 @@ function template({files}) {
     <title>Film DB, Danmarks største film database.</title>
   </head>
   <body>
-    <filmdb-app></filmdb-app>
+    <film-db></film-db>
     <script>
         function c(){if(window.fetch)d();else{var b=document.createElement("script");b.src="./fetch.js";b.onload=d;document.body.appendChild(b)}}function d(){var b=document.createElement("script");b.type="module";if("function"===typeof Object.fromEntries)var a="` + entryChunk2019 + `";else void 0!==window.Promise&&"function"===typeof window.Promise.prototype.finally?a="` + entryChunk2018 + `":"function"===typeof String.prototype.padStart?a="` + entryChunk2017 + `":"function"===typeof Array.prototype.includes?a="` + entryChunk2016 + `":void 0!==window.Promise?a="` + entryChunk2015 + `":(a="` + entryChunkES5 + `",b.type="");b.src=a;document.body.appendChild(b)}if("function"!==typeof window.CustomEvent){var CustomEvent=function(b,a){a=a||{bubbles:!1,cancelable:!1,detail:void 0};var f=document.createEvent("CustomEvent");f.initCustomEvent(b,a.bubbles,a.cancelable,a.detail);return f};CustomEvent.prototype=window.Event.prototype;window.CustomEvent=CustomEvent}if(window.customElements)c();else{var e=document.createElement("script");e.src="./ce.js";e.onload=c;document.body.appendChild(e)};
     </script>

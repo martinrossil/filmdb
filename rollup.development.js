@@ -4,7 +4,7 @@ import livereload from 'rollup-plugin-livereload';
 import resolve from '@rollup/plugin-node-resolve';
 
 export default [{
-        input: './src/FilmDBApp.ts',
+        input: './src/FilmDB.ts',
         plugins: [
             typescript({ tsconfig: 'tsconfig.development.json' }),
             resolve(),
