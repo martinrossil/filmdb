@@ -16,7 +16,7 @@ export default [{
         resolve(),
         copy({
             targets: [
-                { src: 'assets/production/_headers.txt', dest: 'public' },
+                { src: 'assets/production/_headers', dest: 'public' },
                 { src: 'assets/fonts/**.*', dest: 'public' },
                 { src: 'assets/icons/**.*', dest: 'public' },
                 { src: 'assets/production/**.*', dest: 'public', },
