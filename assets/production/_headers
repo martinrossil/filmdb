@@ -1,10 +1,14 @@
 /ce.js
+    Cache-Control: max-age=3600
 /fetch.js
-/icon.svg
-/icon32x32.ico
-/icon180x180.png
-/icon192x192.png
-/icon512x512.png
+    Cache-Control: max-age=3600
+/*.svg
+    Cache-Control: max-age=3600
+/*.ico
+    Cache-Control: max-age=3600
+/*.png
+    Cache-Control: max-age=3600
 /manifest.webmanifest
+    Cache-Control: max-age=3600
 /robots.txt
     Cache-Control: max-age=3600
