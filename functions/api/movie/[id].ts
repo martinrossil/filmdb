@@ -11,7 +11,7 @@ export async function onRequest(context) {
       } = context;
     const id: number = parseInt(params.id);
     const [movie, error] = await getMovie(id);
-    let response = '';
+    let response = '[null, null]';
     if (movie) {
         response = JSON.stringify(movie, null, 4);
     }

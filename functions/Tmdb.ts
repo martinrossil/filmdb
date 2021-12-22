@@ -20,7 +20,7 @@ export async function getMovie(id: number): Promise<[IMovie | null, Error | null
 function requestInit(): Record<string, string | Record<string, string> | Headers | string[][]> {
     return {
         method: 'GET',
-        headers: this.headersInit
+        headers: headersInit()
     }
 }
 
