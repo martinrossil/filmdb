@@ -1,5 +1,3 @@
-import ITest from '../../../shared/ITest';
-import Test from '../../../shared/Test';
 import { getMovie } from '../../Tmdb';
 
 export async function onRequest(context) {
@@ -12,8 +10,15 @@ export async function onRequest(context) {
         data, // arbitrary space for passing data between middlewares
       } = context;
     const id: number = parseInt(params.id);
-    const test: ITest = getMovie(id);
-    return new Response(JSON.stringify(test, null, 4), {
+    const [movie, error] = await getMovie(id);
+    let response = '';
+    if (movie) {
+        response = JSON.stringify(movie, null, 4);
+    }
+    if (error) {
+        response = JSON.stringify({error: Error}, null, 4);
+    }
+    return new Response(response, {
         headers: {
             'content-type': 'application/json;charset=UTF-8'
         }
