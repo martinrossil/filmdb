@@ -20,6 +20,7 @@
   "homepage": "https://github.com/martinrossil/filmdb#readme",
   "devDependencies": {
     "@ampproject/rollup-plugin-closure-compiler": "^0.26.0",
+    "@cloudflare/workers-types": "^3.3.0",
     "@rollup/plugin-html": "^0.2.4",
     "@rollup/plugin-node-resolve": "^11.2.1",
     "@rollup/plugin-strip": "^2.0.0",
