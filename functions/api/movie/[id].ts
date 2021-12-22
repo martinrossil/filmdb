@@ -1,3 +1,7 @@
+import ITest from '../../../shared/ITest';
+import Test from '../../../shared/Test';
+import { getMovie } from '../../Tmdb';
+
 export async function onRequest(context) {
     const {
         request, // same as existing Worker API
@@ -7,5 +11,11 @@ export async function onRequest(context) {
         next, // used for middleware or to fetch assets
         data, // arbitrary space for passing data between middlewares
       } = context;
-    return new Response("params" + JSON.stringify(params));
+    const id: number = parseInt(params.id);
+    const test: ITest = getMovie(id);
+    return new Response(JSON.stringify(test, null, 4), {
+        headers: {
+            'content-type': 'application/json;charset=UTF-8'
+        }
+    });
 }
