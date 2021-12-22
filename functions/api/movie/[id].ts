@@ -7,5 +7,5 @@ export async function onRequest(context) {
         next, // used for middleware or to fetch assets
         data, // arbitrary space for passing data between middlewares
       } = context;
-    return new Response("params", params);
+    return new Response("params" + JSON.stringify(params));
 }
