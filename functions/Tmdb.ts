@@ -1,16 +1,15 @@
 import IMovie from '../shared/IMovie';
-import Movie from '../shared/Movie';
 import { TMDB_BASE_URL, TMDB_TOKEN } from './Config';
 
 export async function getMovie(id: number): Promise<[IMovie | null, Error | null]> {
     const url = TMDB_BASE_URL + '/movie/' + id + '?language=da&include_adult=false';
     try {
         const movieResponse = await fetch(url, requestInit());
-        const movieJson = await movieResponse.json();
+        const movieJson: IMovie = await movieResponse.json();
         if (movieResponse.ok) {
-            return [new Movie(movieJson), null];
+            return [movieJson, null];
         }
-        return [null, new Error(movieJson.status_message)];
+        return [null, new Error()];
     } catch (error) {
         const typeError: TypeError = error as TypeError;
         return [null, new Error(typeError.message)];
