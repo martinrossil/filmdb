@@ -6,6 +6,7 @@ export default class MovieRenderer extends DataRenderer<IMovie> {
         super();
         this.width = 100;
         this.height = 100;
+        this.flexGrow = 1;
         this.backgroundColor = 'blue';
     }
 }
