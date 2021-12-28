@@ -10,7 +10,8 @@ export default class FilmDB extends Application {
         this.bodyBackgroundColor = '#000d1a';
         this.display = Display.BLOCK;
         this.style.height = '100vh';
-        this.addComponents([this.movieContainer, new BottomBar()]);
+        this.padding = 16;
+        this.addComponents([this.movieContainer]);
     }
 
     private _movieContainer!: IDataContainer<IMovie>
@@ -30,7 +31,7 @@ export default class FilmDB extends Application {
     private get movies(): IArrayCollection<IMovie> {
         if (!this._movies) {
             const items: Array<IMovie> = [];
-            for (let i = 0; i < 1000; i++) {
+            for (let i = 0; i < 20; i++) {
                 items.push(new Movie(i, Math.random().toString()))
             }
             this._movies = new ArrayCollection(items);

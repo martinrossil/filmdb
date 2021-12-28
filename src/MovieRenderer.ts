@@ -4,10 +4,11 @@ import IMovie from '../shared/IMovie';
 export default class MovieRenderer extends DataRenderer<IMovie> {
     public constructor() {
         super();
-        this.width = 100;
-        this.height = 100;
+        this.minWidth = 200;
+        // this.height = 100;
         this.flexGrow = 1;
-        this.backgroundColor = 'blue';
+        this.aspectRatio = 1.5;
+        this.backgroundColor = '#0F2133';
     }
 }
 customElements.define('movie-renderer', MovieRenderer);
