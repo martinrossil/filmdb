@@ -1,4 +1,4 @@
-import IMovie from '../shared/IMovie';
+import IMovie from '../dto/IMovie';
 import { TMDB_BASE_URL, TMDB_TOKEN } from './Config';
 
 export async function getMovie(id: number): Promise<[IMovie | null, Error | null]> {

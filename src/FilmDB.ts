@@ -1,7 +1,7 @@
 import { Application, ArrayCollection, DataContainer, Display, FlexWrap, IArrayCollection, IDataContainer, Overflow } from 'fuix';
 import BottomBar from './BottomBar';
-import IMovie from '../shared/IMovie';
-import Movie from '../shared/Movie';
+import IMovie from '../dto/IMovie';
+import Movie from '../dto/Movie';
 import MovieRenderer from './MovieRenderer';
 
 export default class FilmDB extends Application {

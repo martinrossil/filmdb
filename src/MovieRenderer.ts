@@ -1,5 +1,5 @@
 import { DataRenderer } from 'fuix'
-import IMovie from '../shared/IMovie';
+import IMovie from '../dto/IMovie';
 
 export default class MovieRenderer extends DataRenderer<IMovie> {
     public constructor() {
