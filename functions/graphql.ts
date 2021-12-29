@@ -1,3 +1,21 @@
+import { createRequestHandler } from '../ersa/src';
+import { GraphQLSchema, GraphQLObjectType, GraphQLString } from '../ersa/graphql';
+
+const schema = new GraphQLSchema({
+    query: new GraphQLObjectType({
+      name: "Query",
+      fields: {
+        hi: {
+          type: GraphQLString,
+          args: { name: { type: GraphQLString } },
+          resolve: (_root, args) => "Hello " + (args.name ? args.name : "World"),
+        },
+      },
+    }),
+  });
+
+  const gqlHandler = createRequestHandler(schema);
+
 export async function onRequest(context) {
     const {
         request, // same as existing Worker API
@@ -8,11 +26,5 @@ export async function onRequest(context) {
         data, // arbitrary space for passing data between middlewares
     } = context;
 
-    const response = JSON.stringify({data: 'ok'}, null, 4)
-
-    return new Response(response, {
-        headers: {
-            'content-type': 'application/json;charset=UTF-8'
-        }
-    });
+    return gqlHandler(request);
 }
