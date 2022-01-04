@@ -1,13 +1,14 @@
 import { getMovie } from '../../Tmdb';
 
-export async function onRequest(context) {
+/* eslint-disable */
+export async function onRequest(context): Promise<Response> {
     const {
         request, // same as existing Worker API
         env, // same as existing Worker API
         params, // if filename includes [id] or [[path]]
         waitUntil, // same as ctx.waitUntil in existing Worker API
         next, // used for middleware or to fetch assets
-        data, // arbitrary space for passing data between middlewares
+        data // arbitrary space for passing data between middlewares
       } = context;
     const id: number = parseInt(params.id);
     const [movie, error] = await getMovie(id);
@@ -16,7 +17,7 @@ export async function onRequest(context) {
         response = JSON.stringify(movie, null, 4);
     }
     if (error) {
-        response = JSON.stringify({error: Error}, null, 4);
+        response = JSON.stringify({ error: Error }, null, 4);
     }
     return new Response(response, {
         headers: {

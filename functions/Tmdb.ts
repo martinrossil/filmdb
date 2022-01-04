@@ -1,5 +1,5 @@
-import IMovie from '../dto/IMovie';
 import { TMDB_BASE_URL, TMDB_TOKEN } from './Config';
+import IMovie from '../src/dto/IMovie';
 
 export async function getMovie(id: number): Promise<[IMovie | null, Error | null]> {
     const url = TMDB_BASE_URL + '/movie/' + id + '?language=da&include_adult=false';
