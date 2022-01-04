@@ -10,8 +10,7 @@
         "removeComments": true
     },
     "include": [
-        "src/**/*",
-        "dto/**/*"
+        "src/**/*"
     ],
     "exclude": [
         "node_modules"
