@@ -1,3 +1,4 @@
+/* eslint-disable */
 import clear from 'rollup-plugin-clear';
 import resolve from '@rollup/plugin-node-resolve';
 import copy from 'rollup-plugin-copy';
@@ -9,7 +10,7 @@ import html from '@rollup/plugin-html';
 export default [{
     input: './src/FilmDB.ts',
     onwarn: function(warning, warn) {
-        return;
+        console.log('warn', warn);
     },
     plugins: [
         clear({ targets: ['public'] }),
@@ -24,20 +25,20 @@ export default [{
         }),
         typescript(),
         strip({ include: '**/*.ts' }),
-        html({template: template}),
+        html({ template: template }),
         filesize({ showBrotliSize: true })
     ],
     output: [getOutput(2019), getOutput(2018), getOutput(2017), getOutput(2016), getOutput(2015)]
 }, {
     input: './src/FilmDB.ts',
     onwarn: function(warning, warn) {
-        return;
+        console.log('warn', warn);
     },
     plugins: [
         resolve(),
         typescript(),
         strip({ include: '**/*.ts' }),
-        html({template: template}),
+        html({ template: template }),
         filesize({ showBrotliSize: true })
     ],
     output: getES5()
@@ -81,12 +82,12 @@ let entryChunk2017;
 let entryChunk2018;
 let entryChunk2019;
 
-function template({files}) {
+function template({ files }) {
     const chunks = files.js;
     for (const chunk of chunks) {
         console.log(chunk.fileName);
         if (chunk.isEntry) {
-            let fileName = chunk.fileName;
+            const fileName = chunk.fileName;
             if (fileName.startsWith('FilmDB.es5')) {
                 entryChunkES5 = fileName;
             } else if (fileName.startsWith('FilmDB.2015')) {
