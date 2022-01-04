@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "rollup -c rollup.development.js --watch",
-    "lint": "eslint src/**/*",
+    "lint": "eslint src/**/* functions/**/*",
     "build": "rollup -c rollup.production.js"
   },
   "repository": {
