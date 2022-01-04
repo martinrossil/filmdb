@@ -1,13 +1,16 @@
-type Genre {
-    id: ID!
-    name: String!
-    movies: [Movie!]! @relation
+type Movie {
+    title: String!
+    credits: [Person!] @relation
+    genres: [Genre!] @relation
 }
 
-type Movie {
-    id: ID!
-    adult: Boolean!
-    budget: Int!
-    genres: [Genre!]! @relation
-    title: String!
+type Person {
+    name: String!
+    movies: [Movie!] @relation
+}
+
+type Genre {
+    id: Int!
+    name: String!
+    movies: [Movie!] @relation
 }
