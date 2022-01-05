@@ -1,13 +1,13 @@
-import { ColumnLayout, List } from 'enta';
+import { ColumnLayout, DataContainer } from 'enta';
 import IMovie from '../dto/IMovie';
 import Model from '../state/Model';
 import MovieItemRenderer from './MovieItemRenderer';
 
-export default class MoviesList extends List<IMovie> {
+export default class MoviesList extends DataContainer<IMovie> {
     public constructor() {
         super();
         this.percentWidth = this.percentHeight = 100;
-        this.ItemRendererClass = MovieItemRenderer;
+        this.DataRendererClass = MovieItemRenderer;
         this.dataProvider = Model.movies;
         this.padding = 16;
         this.layout = new ColumnLayout(128, 5, 16);
