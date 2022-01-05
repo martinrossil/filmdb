@@ -9,9 +9,7 @@ import strip from '@rollup/plugin-strip';
 import html from '@rollup/plugin-html';
 export default [{
     input: './src/FilmDB.ts',
-    onwarn: function(warning, warn) {
-        console.log('warn', warn);
-    },
+    onwarn: function() {},
     plugins: [
         clear({ targets: ['public'] }),
         resolve(),
@@ -31,9 +29,7 @@ export default [{
     output: [getOutput(2019), getOutput(2018), getOutput(2017), getOutput(2016), getOutput(2015)]
 }, {
     input: './src/FilmDB.ts',
-    onwarn: function(warning, warn) {
-        console.log('warn', warn);
-    },
+    onwarn: function() {},
     plugins: [
         resolve(),
         typescript(),
