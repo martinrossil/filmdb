@@ -1,13 +1,28 @@
 import { TMDB_BASE_URL, TMDB_TOKEN } from './Config';
 import IMovie from '../src/dto/IMovie';
 
-export async function getMovie(id: number): Promise<[IMovie | null, Error | null]> {
-    const url = TMDB_BASE_URL + '/movie/' + id + '?language=da&include_adult=false';
+export async function discover(query: string): Promise<[unknown | null, Error | null]> {
+    const url = TMDB_BASE_URL + '/discover/movie?' + query + '&language=da-DK&region=dk';
     try {
-        const movieResponse = await fetch(url, requestInit());
-        const movieJson: IMovie = await movieResponse.json();
-        if (movieResponse.ok) {
-            return [movieJson, null];
+        const response = await fetch(url, requestInit());
+        const json = await response.json();
+        if (response.ok) {
+            return [json, null];
+        }
+        return [null, new Error()];
+    } catch (error) {
+        const typeError: TypeError = error as TypeError;
+        return [null, new Error(typeError.message)];
+    }
+}
+
+export async function getMovie(id: number): Promise<[IMovie | null, Error | null]> {
+    const url = TMDB_BASE_URL + '/movie/' + id + '?language=da&region=dk&include_adult=false';
+    try {
+        const response = await fetch(url, requestInit());
+        const json: IMovie = await response.json();
+        if (response.ok) {
+            return [json, null];
         }
         return [null, new Error()];
     } catch (error) {
