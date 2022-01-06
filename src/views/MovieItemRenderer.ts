@@ -11,9 +11,11 @@ export default class MovieItemRenderer extends DataRenderer<MovieDiscoverSchema>
     }
 
     protected dataChanged(): void {
-        console.log(this.data);
-        if (this.data && this.data['backdrop_path']) {
-            this.image.source = 'https://image.tmdb.org/t/p/w300/' + this.data['backdrop_path'];
+        if (this.data) {
+            this.image.alt = this.data['title'];
+            if (this.data['backdrop_path']) {
+                this.image.source = 'https://image.tmdb.org/t/p/w300/' + this.data['backdrop_path'];
+            }
         }
     }
 
