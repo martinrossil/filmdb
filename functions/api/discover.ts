@@ -8,7 +8,10 @@ export async function onRequest(context): Promise<Response> {
         next, // used for middleware or to fetch assets
         data // arbitrary space for passing data between middlewares
       } = context;
-    let response = JSON.stringify([request, env, params, data], null, 4);
+      const url = new URL(request.url);
+      const search = new URLSearchParams(url.search);
+      
+    let response = JSON.stringify(search, null, 4);
     return new Response(response, {
         headers: {
             'content-type': 'application/json;charset=UTF-8',
