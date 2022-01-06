@@ -1,8 +1,8 @@
 import { DataRenderer } from 'enta';
-import IMovie from '../dto/IMovie';
+import { MovieDiscoverSchema } from '../schema/MovieDiscoverSchema';
 import Colors from '../theme/Colors';
 
-export default class MovieItemRenderer extends DataRenderer<IMovie> {
+export default class MovieItemRenderer extends DataRenderer<MovieDiscoverSchema> {
     public constructor() {
         super();
         this.backgroundColor = Colors.BLUE_DARK;
