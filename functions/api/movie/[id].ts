@@ -1,6 +1,6 @@
+/* eslint-disable */
 import { getMovie } from '../../Tmdb';
 
-/* eslint-disable */
 export async function onRequest(context): Promise<Response> {
     const {
         request, // same as existing Worker API
@@ -10,9 +10,11 @@ export async function onRequest(context): Promise<Response> {
         next, // used for middleware or to fetch assets
         data // arbitrary space for passing data between middlewares
       } = context;
+
     const id: number = parseInt(params.id);
     const [movie, error] = await getMovie(id);
     let response = '[null, null]';
+    
     if (movie) {
         response = JSON.stringify(movie, null, 4);
     }
