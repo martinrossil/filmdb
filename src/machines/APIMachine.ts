@@ -24,7 +24,7 @@ export default class APIMachine extends Machine<FilmDB> {
         console.log('onLoadingPageState pathname', location.pathname);
         Model.movies.removeAll();
         try {
-            const response = await fetch('/api/discover');
+            const response = await fetch('https://filmdb.pages.dev/api/discover');
             const page: MovieDiscoverPageSchema = await response.json();
             console.log('page', page);
             // Because the closure compiler renames variable names, we need to use ['name'] syntax,
