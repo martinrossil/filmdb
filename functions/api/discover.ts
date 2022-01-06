@@ -11,7 +11,7 @@ export async function onRequest(context): Promise<Response> {
       const url = new URL(request.url);
       const search = new URLSearchParams(url.search);
       
-    let response = JSON.stringify(search, null, 4);
+    let response = JSON.stringify(search.toString(), null, 4);
     return new Response(response, {
         headers: {
             'content-type': 'application/json;charset=UTF-8',
