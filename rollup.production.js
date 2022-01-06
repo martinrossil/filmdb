@@ -107,6 +107,8 @@ function template({ files }) {
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
     <meta name="Description" content="Film DB, Danmarks største film database.">
     <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://image.tmdb.org" crossorigin>
+    <link rel="dns-prefetch" href="https://image.tmdb.org">
     <link rel="icon" href="icon32x32.ico">
     <link rel="icon" href="icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="icon180x180.png">
