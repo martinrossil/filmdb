@@ -29,7 +29,7 @@ export default class APIMachine extends Machine<FilmDB> {
             console.log('page', page);
             // Because the closure compiler renames variable names, we need to use ['name'] syntax,
             // so page.movies is kept in the ADVANCED compiler mode.
-            Model.movies.addItems(page.results);
+            Model.movies.addItems(page['results']);
         } catch (error) {
             console.log(error);
         }
