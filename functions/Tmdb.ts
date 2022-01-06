@@ -2,7 +2,7 @@ import { TMDB_BASE_URL, TMDB_TOKEN } from './Config';
 import IMovie from '../src/dto/IMovie';
 
 export async function discover(query: string): Promise<[unknown | null, Error | null]> {
-    const url = TMDB_BASE_URL + '/discover/movie?' + query + '&language=da-DK&region=dk';
+    const url = TMDB_BASE_URL + '/discover/movie?' + query + '&language=da-DK&region=dk&include_adult=false';
     try {
         const response = await fetch(url, requestInit());
         const json = await response.json();
