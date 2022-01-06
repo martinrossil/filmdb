@@ -24,7 +24,6 @@ export async function onRequest(context): Promise<Response> {
     return new Response(response, {
         headers: {
             'content-type': 'application/json;charset=UTF-8',
-            'Cache-Control': 'public, max-age=3600',
             'Access-Control-Allow-Origin': '*',
         }
     });
