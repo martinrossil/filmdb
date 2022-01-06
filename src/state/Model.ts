@@ -1,10 +1,9 @@
 import { ArrayCollection, IArrayCollection } from 'enta';
-import IMovie from '../dto/IMovie';
-import Movie from '../dto/Movie';
+import { MovieDiscoverSchema } from '../schema/MovieDiscoverSchema';
 
 export default class Model {
-    private static _movies: IArrayCollection<IMovie>;
-    public static get movies(): IArrayCollection<IMovie> {
+    private static _movies: IArrayCollection<MovieDiscoverSchema>;
+    public static get movies(): IArrayCollection<MovieDiscoverSchema> {
         if (!this._movies) {
             this._movies = new ArrayCollection();
         }
