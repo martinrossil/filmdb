@@ -9,7 +9,7 @@ export async function onRequest(context): Promise<Response> {
         waitUntil, // same as ctx.waitUntil in existing Worker API
         next, // used for middleware or to fetch assets
         data // arbitrary space for passing data between middlewares
-      } = context;
+    } = context;
 
     const id: number = parseInt(params.id);
     const [movie, error] = await getMovie(id);
