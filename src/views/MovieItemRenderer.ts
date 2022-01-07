@@ -21,7 +21,9 @@ export default class MovieItemRenderer extends DataRenderer<MovieDiscoverSchema>
 
     protected updateInternalHeight(): void {
         if (this.actualWidth > 0) {
-            this.internalHeight = this.actualWidth * 9 / 16;
+            const height = Math.floor(this.actualWidth * 9 / 16);
+            console.log(this.actualWidth, height);
+            this.internalHeight = height;
         }
     }
 
