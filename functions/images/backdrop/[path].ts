@@ -8,7 +8,7 @@ export async function onRequest(context): Promise<Response> {
         next, // used for middleware or to fetch assets
         data // arbitrary space for passing data between middlewares
     } = context;
-    const URL = 'https://image.tmdb.org/t/p/w300';
+    const URL = 'https://image.tmdb.org/t/p/w300/';
     const path: string = params.path;
     return fetch(URL + path);
 }
