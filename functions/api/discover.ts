@@ -1,4 +1,6 @@
 /* eslint-disable */
+import IMoviesPage from '../../src/dto/IMoviesPage';
+import { movieDiscoverPageSchemaToMoviesPage } from '../DTOSchemaAdapter';
 import { discover } from '../Tmdb';
 
 export async function onRequest({request}): Promise<Response> {
@@ -8,7 +10,8 @@ export async function onRequest({request}): Promise<Response> {
     let response = '[null, null]';
     
     if (page) {
-        response = JSON.stringify(page, null, 4);
+        const moviesPage: IMoviesPage = movieDiscoverPageSchemaToMoviesPage(page);
+        response = JSON.stringify(moviesPage, null, 4);
     }
     if (error) {
         response = JSON.stringify({ error: Error }, null, 4);
