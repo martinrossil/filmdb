@@ -1,6 +1,6 @@
 import { TMDB_BASE_URL, TMDB_TOKEN } from './Config';
 import IMovie from '../src/dto/IMovie';
-import { MovieDiscoverPageSchema } from '../src/schema/MovieDiscoverPageSchema';
+import { MovieDiscoverPageSchema } from './schema/MovieDiscoverPageSchema';
 
 export async function discover(query: string): Promise<[MovieDiscoverPageSchema | null, Error | null]> {
     const url = TMDB_BASE_URL + '/discover/movie?' + query + '&language=da-DK&region=dk&include_adult=false';
