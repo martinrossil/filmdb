@@ -1,4 +1,4 @@
 export default interface IMovie {
-    id: number;
+    backdrop: string | null;
     title: string;
 }
