@@ -27,9 +27,9 @@ export default class APIMachine extends Machine<FilmDB> {
             const response = await fetch('https://filmdb.pages.dev/api/discover');
             const moviesPage: IMoviesPage = await response.json();
             console.log('page', moviesPage);
-            // Because the closure compiler renames variable names, we need to use ['name'] syntax,
-            // so page.movies is kept in the ADVANCED compiler mode.
-            Model.movies.addItems(moviesPage.movies);
+            // Because the closure compiler renames variable names, we need to use ['movies'] syntax,
+            // so moviesPage.movies is kept in the ADVANCED compiler mode.
+            Model.movies.addItems(moviesPage['movies']);
         } catch (error) {
             console.log(error);
         }
