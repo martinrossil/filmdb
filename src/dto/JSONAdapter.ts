@@ -5,7 +5,7 @@ import MoviesPage from './MoviesPage';
 
 export function moviesPageJSONToMoviesPage(json: IMoviesPage): IMoviesPage {
     const moviesPage: IMoviesPage = new MoviesPage();
-    for (const movieJSON of json.movies) {
+    for (const movieJSON of json['movies']) {
         moviesPage.movies.push(movieJSONToMovie(movieJSON));
     }
     moviesPage.page = json['page'];
