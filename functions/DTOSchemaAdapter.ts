@@ -11,7 +11,7 @@ export function movieDiscoverPageSchemaToMoviesPage(schema: MovieDiscoverPageSch
         moviesPage.movies.push(movieDiscoverSchemaToMovie(movieDiscoverSchema));
     }
     moviesPage.page = schema.page;
-    moviesPage.totalMovies = schema.total_result;
+    moviesPage.totalMovies = schema.total_results;
     moviesPage.totalPages = schema.total_pages;
     return moviesPage;
 }

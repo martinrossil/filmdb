@@ -2,6 +2,7 @@ import { IEventListener, IState, Machine, State } from 'enta';
 import FilmDB from '../FilmDB';
 import Model from '../state/Model';
 import IMoviesPage from '../dto/IMoviesPage';
+import { moviesPageJSONToMoviesPage } from '../dto/JSONAdapter';
 
 export default class APIMachine extends Machine<FilmDB> {
     public constructor(host: FilmDB) {
@@ -25,11 +26,10 @@ export default class APIMachine extends Machine<FilmDB> {
         Model.movies.removeAll();
         try {
             const response = await fetch('https://filmdb.pages.dev/api/discover');
-            const moviesPage: IMoviesPage = await response.json();
+            const moviesPageSJON: IMoviesPage = await response.json();
+            const moviesPage: IMoviesPage = moviesPageJSONToMoviesPage(moviesPageSJON);
             console.log('page', moviesPage);
-            // Because the closure compiler renames variable names, we need to use ['movies'] syntax,
-            // so moviesPage.movies is kept in the ADVANCED compiler mode.
-            Model.movies.addItems(moviesPage['movies']);
+            Model.movies.addItems(moviesPage.movies);
         } catch (error) {
             console.log(error);
         }
