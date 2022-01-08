@@ -10,11 +10,15 @@ export default class MovieItemRenderer extends DataRenderer<MovieDiscoverSchema>
         this.addElement(this.image);
     }
 
+    /**
+     * backdrop sizes
+     * w300 w780 w1280 original
+     */
     protected dataChanged(): void {
         if (this.data) {
             this.image.alt = this.data['title'];
             if (this.data['backdrop_path']) {
-                this.image.source = 'https://image.tmdb.org/t/p/w300/' + this.data['backdrop_path'];
+                this.image.source = 'https://filmdb.pages.dev/images/backdrop' + this.data['backdrop_path'];
             }
         }
     }
