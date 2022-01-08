@@ -1,10 +1,10 @@
 import { DataRenderer, ILabelElement, VerticalLayout } from 'enta';
 import SerifLabel from '../components/SerifLabel';
-import { MovieDiscoverSchema } from '../schema/MovieDiscoverSchema';
 import Colors from '../theme/Colors';
 import BackdropImage from './BackdropImage';
+import IMovie from '../dto/IMovie';
 
-export default class MovieItemRenderer extends DataRenderer<MovieDiscoverSchema> {
+export default class MovieItemRenderer extends DataRenderer<IMovie> {
     public constructor() {
         super();
         this.clip = 'hidden';
@@ -17,8 +17,8 @@ export default class MovieItemRenderer extends DataRenderer<MovieDiscoverSchema>
         if (this.data) {
             this.titleLabel.text = this.data.title;
             this.image.alt = this.data.title;
-            if (this.data['backdrop_path']) {
-                this.image.source = 'https://filmdb.pages.dev/images/backdrop' + this.data.backdrop_path;
+            if (this.data.backdrop) {
+                this.image.source = 'https://filmdb.pages.dev/images/backdrop' + this.data.backdrop;
             }
         }
     }

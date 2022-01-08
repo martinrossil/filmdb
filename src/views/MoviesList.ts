@@ -1,9 +1,9 @@
 import { ColumnLayout, DataContainer } from 'enta';
-import { MovieDiscoverSchema } from '../schema/MovieDiscoverSchema';
+import IMovie from '../dto/IMovie';
 import Model from '../state/Model';
 import MovieItemRenderer from './MovieItemRenderer';
 
-export default class MoviesList extends DataContainer<MovieDiscoverSchema> {
+export default class MoviesList extends DataContainer<IMovie> {
     public constructor() {
         super();
         this.percentWidth = this.percentHeight = 100;
