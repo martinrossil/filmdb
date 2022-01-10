@@ -8,6 +8,7 @@ export default class Genre extends EventDispatcher implements IProvider {
         this.label = label;
         this.id = id;
         this.slug = slug;
+        this.href = '/a/' + slug + '/a/1';
     }
 
     public id: number

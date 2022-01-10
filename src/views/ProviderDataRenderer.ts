@@ -13,6 +13,13 @@ export default class ProviderDataRenderer extends DataRenderer<IProvider> {
         this.addElement(this.linkContainer);
     }
 
+    protected dataChanged(): void {
+        if (this.data) {
+            this.nameLabel.text = this.data.label;
+            this.linkContainer.href = this.data.href;
+        }
+    }
+
     private _linkContainer!: ILinkContainer;
     private get linkContainer(): ILinkContainer {
         if (!this._linkContainer) {
@@ -22,13 +29,6 @@ export default class ProviderDataRenderer extends DataRenderer<IProvider> {
             this._linkContainer.addElement(this.nameLabel);
         }
         return this._linkContainer;
-    }
-
-    protected dataChanged(): void {
-        if (this.data) {
-            this.nameLabel.text = this.data.label;
-            this.linkContainer.href = this.data.href;
-        }
     }
 
     private _nameLabel!: ILabelElement;
