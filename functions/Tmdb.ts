@@ -12,8 +12,7 @@ export async function discover(query: string): Promise<[MovieDiscoverPageSchema 
         }
         return [null, new Error()];
     } catch (error) {
-        const typeError: TypeError = error as TypeError;
-        return [null, new Error(typeError.message)];
+        return errorTupple(error);
     }
 }
 
@@ -27,9 +26,13 @@ export async function getMovie(id: number): Promise<[IMovie | null, Error | null
         }
         return [null, new Error()];
     } catch (error) {
-        const typeError: TypeError = error as TypeError;
-        return [null, new Error(typeError.message)];
+        return errorTupple(error);
     }
+}
+
+function errorTupple(error: Error): [null, Error] {
+    const typeError: TypeError = error as TypeError;
+    return [null, new Error(typeError.message)];
 }
 
 function requestInit(): Record<string, string | Record<string, string> | Headers | string[][]> {
