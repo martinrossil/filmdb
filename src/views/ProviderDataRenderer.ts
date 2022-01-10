@@ -27,7 +27,7 @@ export default class ProviderDataRenderer extends DataRenderer<IProvider> {
     protected dataChanged(): void {
         if (this.data) {
             this.nameLabel.text = this.data.label;
-            this.linkContainer.href = '/' + this.data.slug;
+            this.linkContainer.href = this.data.href;
         }
     }
 

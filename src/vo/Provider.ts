@@ -8,6 +8,7 @@ export default class Provider extends EventDispatcher implements IProvider {
         this.label = label;
         this.id = id;
         this.slug = slug;
+        this.href = '/' + slug + '/a/a/1';
     }
 
     public id: number
