@@ -4,6 +4,24 @@ import Provider from '../../src/vo/Provider';
 /*import IGenre from '../../src/vo/IGenre';
 import Genre from '../../src/vo/Genre';*/
 
+const providers: Array<IProvider> = [
+    new Provider('Amazon Prime', 119, 'b'),
+    new Provider('Apple Itunes', 2, 'c'),
+    new Provider('Apple TV+', 350, 'd'),
+    new Provider('Blockbuster', 423, 'e'),
+    new Provider('C More', 77, 'f'),
+    new Provider('Dansk Filmskat', 621, 'g'),
+    new Provider('Disney+', 337, 'h'),
+    new Provider('DR TV', 620, 'i'),
+    new Provider('Filmstriben', 443, 'j'),
+    new Provider('HBO Max', 384, 'k'),
+    new Provider('Netflix', 8, 'l'),
+    new Provider('Paramount+', 531, 'm'),
+    new Provider('SF Anytime', 426, 'n'),
+    new Provider('TV2 Play', 383, 'o'),
+    new Provider('Viaplay', 76, 'p')
+];
+
 export async function onRequest({params}): Promise<Response> {
     const segments: Array<string> = params.test;
     return getResponse(JSON.stringify(providers));
@@ -79,21 +97,3 @@ const genres: Array<IGenre> = [
     new Genre('Mysterie', 9648, 'o'),
     new Genre('Romantik', 10749, 'p')
 ]; */
-
-const providers: Array<IProvider> = [
-    new Provider('Amazon Prime', 119, 'b'),
-    new Provider('Apple Itunes', 2, 'c'),
-    new Provider('Apple TV+', 350, 'd'),
-    new Provider('Blockbuster', 423, 'e'),
-    new Provider('C More', 77, 'f'),
-    new Provider('Dansk Filmskat', 621, 'g'),
-    new Provider('Disney+', 337, 'h'),
-    new Provider('DR TV', 620, 'i'),
-    new Provider('Filmstriben', 443, 'j'),
-    new Provider('HBO Max', 384, 'k'),
-    new Provider('Netflix', 8, 'l'),
-    new Provider('Paramount+', 531, 'm'),
-    new Provider('SF Anytime', 426, 'n'),
-    new Provider('TV2 Play', 383, 'o'),
-    new Provider('Viaplay', 76, 'p')
-];
