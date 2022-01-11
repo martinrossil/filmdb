@@ -24,8 +24,9 @@ export default class APIMachine extends Machine<FilmDB> {
 
     private async onLoadingPageState(e: CustomEvent<string>): Promise<void> {
         Model.movies.removeAll();
+        console.log(e.detail);
         try {
-            const url = 'https://filmdb.pages.dev/api/discover' + getQueryParamsFromPath(e.detail);
+            const url = 'https://filmdb.pages.dev/api' + e.detail;
             const response = await fetch(url);
             const moviesPageSJON: IMoviesPage = await response.json();
             const moviesPage: IMoviesPage = moviesPageJSONToMoviesPage(moviesPageSJON);
