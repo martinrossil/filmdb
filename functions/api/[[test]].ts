@@ -4,7 +4,6 @@ import Genre from '../vo/Genre';
 import IMoviesPage from '../../src/dto/IMoviesPage';
 import { discover } from '../Tmdb';
 import { movieDiscoverPageSchemaToMoviesPage } from '../DTOSchemaAdapter';
-import { textSpanContainsPosition } from 'typescript';
 
 export async function onRequest({params}): Promise<Response> {
     const segments: Array<string> = params.test;
