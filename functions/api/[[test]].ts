@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 import Provider from '../vo/Provider';
 import Genre from '../vo/Genre';
 import IMoviesPage from '../../src/dto/IMoviesPage';
@@ -8,14 +8,23 @@ import { KVNamespace } from '../interfaces/ICloudFlare';
 
 declare const TEST: KVNamespace;
 
-export async function onRequest({params}): Promise<Response> {
+export async function onRequest({ params }): Promise<Response> {
     try {
         const segments: Array<string> = params.test;
         if (segments.length === 4) {
             const path: string = segments.join('/');
-            const value: string | null = await TEST.get(path);
-            if (value !== null) {
-                return getResponse(value);
+            let value: string | null = '';
+            try {
+                value = await TEST.get(path);
+                if (value !== null) {
+                    return getResponse(value);
+                }
+            } catch (error) {
+                const err = {
+                    error: error,
+                    value: value
+                }
+                return getResponse(JSON.stringify(err))
             }
             let query = '';
             const providers = segments[0];
@@ -50,7 +59,7 @@ function getResponse(body: string): Response {
     return new Response(body, {
         headers: {
             'content-type': 'application/json;charset=UTF-8',
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': '*'
         }
     });
 }
