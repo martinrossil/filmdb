@@ -1,12 +1,13 @@
 /* eslint-disable */
-import IProvider from '../../src/vo/IProvider';
+/*import IProvider from '../../src/vo/IProvider';
 import Provider from '../../src/vo/Provider';
 import IGenre from '../../src/vo/IGenre';
-import Genre from '../../src/vo/Genre';
+import Genre from '../../src/vo/Genre';*/
 
 export async function onRequest({params}): Promise<Response> {
     const segments: Array<string> = params.test;
-    if (segments.length === 4) {
+    return getResponse(JSON.stringify(params.test));
+    /*if (segments.length === 4) {
         let query = '?';
         const providers = segments[0];
         const providersQuery = getProvidersQuery(providers);
@@ -20,9 +21,19 @@ export async function onRequest({params}): Promise<Response> {
         }
         new Response(query);
     }
-    return new Response('No query string');
+    return new Response('No query string');*/
 }
 
+function getResponse(body: string): Response {
+    return new Response(body, {
+        headers: {
+            'content-type': 'application/json;charset=UTF-8',
+            'Access-Control-Allow-Origin': '*',
+        }
+    });
+}
+
+/*
 function getProvidersQuery(segment: string): string {
     let query = '';
     for (const provider of providers) {
@@ -83,4 +94,4 @@ const genres: Array<IGenre> = [
     new Genre('Musik', 10402, 'n'),
     new Genre('Mysterie', 9648, 'o'),
     new Genre('Romantik', 10749, 'p')
-];
+]; */
