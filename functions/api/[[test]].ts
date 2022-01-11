@@ -9,37 +9,41 @@ import { KVNamespace } from '../interfaces/ICloudFlare';
 declare const TEST: KVNamespace;
 
 export async function onRequest({params}): Promise<Response> {
-    const segments: Array<string> = params.test;
-    if (segments.length === 4) {
-        const path: string = segments.join('/');
-        const value: string | null = await TEST.get(path);
-        if (value !== null) {
-            return getResponse(value);
+    try {
+        const segments: Array<string> = params.test;
+        if (segments.length === 4) {
+            const path: string = segments.join('/');
+            const value: string | null = await TEST.get(path);
+            if (value !== null) {
+                return getResponse(value);
+            }
+            let query = '';
+            const providers = segments[0];
+            const providersQuery = getProvidersQuery(providers);
+            if (providersQuery) {
+                query += 'with_watch_providers=' + providersQuery + '&';
+            }
+            const genres = segments[1];
+            const genresQuery = getGenresQuery(genres);
+            if (genresQuery) {
+                query += 'with_genres=' + genresQuery + '&';
+            }
+            const [page, error] = await discover(query);
+            if (page) {
+                const moviesPage: IMoviesPage = movieDiscoverPageSchemaToMoviesPage(page);
+                const moviesPageString = JSON.stringify(moviesPage, null, 4);
+                await TEST.put(path, moviesPageString, { expirationTtl: 120 })
+                return getResponse(moviesPageString);
+            }
+            if (error) {
+                return getResponse(JSON.stringify({ error: Error }, null, 4));
+            }
+            return getResponse(JSON.stringify(new Error('Cloud network error'), null, 4));
         }
-        let query = '';
-        const providers = segments[0];
-        const providersQuery = getProvidersQuery(providers);
-        if (providersQuery) {
-            query += 'with_watch_providers=' + providersQuery + '&';
-        }
-        const genres = segments[1];
-        const genresQuery = getGenresQuery(genres);
-        if (genresQuery) {
-            query += 'with_genres=' + genresQuery + '&';
-        }
-        const [page, error] = await discover(query);
-        if (page) {
-            const moviesPage: IMoviesPage = movieDiscoverPageSchemaToMoviesPage(page);
-            const moviesPageString = JSON.stringify(moviesPage, null, 4);
-            await TEST.put(path, moviesPageString, { expirationTtl: 120 })
-            return getResponse(moviesPageString);
-        }
-        if (error) {
-            return getResponse(JSON.stringify({ error: Error }, null, 4));
-        }
-        return getResponse(JSON.stringify(new Error('Cloud network error'), null, 4));
+        return getResponse(JSON.stringify(params));
+    } catch (error: unknown) {
+        return getResponse(JSON.stringify(error));
     }
-    return getResponse(JSON.stringify(params));
 }
 
 function getResponse(body: string): Response {
