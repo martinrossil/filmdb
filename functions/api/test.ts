@@ -1,6 +1,4 @@
 /* eslint-disable */
-export async function onRequest(context): Promise<Response> {
-    return new Response('Hello, world from test!', {
-        status: 200
-    });
+export async function onRequest({params}): Promise<Response> {
+    return new Response(JSON.stringify(params));
 }
