@@ -4,12 +4,14 @@ import Genre from '../vo/Genre';
 import IMoviesPage from '../../src/dto/IMoviesPage';
 import { discover } from '../Tmdb';
 import { movieDiscoverPageSchemaToMoviesPage } from '../DTOSchemaAdapter';
+import { KVNamespace } from '../interfaces/ICloudFlare';
+
+declare const TEST: KVNamespace;
 
 export async function onRequest({params}): Promise<Response> {
     const segments: Array<string> = params.test;
     if (segments.length === 4) {
         const path: string = segments.join('/');
-        // @ts-ignore
         const value: string | null = await TEST.get(path);
         if (value !== null) {
             return getResponse(value);
@@ -29,9 +31,7 @@ export async function onRequest({params}): Promise<Response> {
         if (page) {
             const moviesPage: IMoviesPage = movieDiscoverPageSchemaToMoviesPage(page);
             const moviesPageString = JSON.stringify(moviesPage, null, 4);
-            // @ts-ignore
             await TEST.put(path, moviesPageString, { expirationTtl: 120 })
-            // NAMESPACE.put(key, value, {expirationTtl: secondsFromNow})
             return getResponse(moviesPageString);
         }
         if (error) {
