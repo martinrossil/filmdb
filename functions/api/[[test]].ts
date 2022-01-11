@@ -1,11 +1,10 @@
 /* eslint-disable */
-
 import Provider from '../vo/Provider';
+import Genre from '../vo/Genre';
 
 export async function onRequest({params}): Promise<Response> {
     const segments: Array<string> = params.test;
-    return getResponse(JSON.stringify(providers));
-    /*if (segments.length === 4) {
+    if (segments.length === 4) {
         let query = '?';
         const providers = segments[0];
         const providersQuery = getProvidersQuery(providers);
@@ -17,9 +16,9 @@ export async function onRequest({params}): Promise<Response> {
         if (genresQuery) {
             query += 'with_genres=' + genresQuery + '&';
         }
-        new Response(query);
+        return getResponse(query);
     }
-    return new Response('No query string');*/
+    return getResponse('No query string');
 }
 
 function getResponse(body: string): Response {
@@ -31,7 +30,6 @@ function getResponse(body: string): Response {
     });
 }
 
-/*
 function getProvidersQuery(segment: string): string {
     let query = '';
     for (const provider of providers) {
@@ -58,9 +56,7 @@ function getGenresQuery(segment: string): string {
     return query;
 }
 
-
-
-const genres: Array<IGenre> = [
+const genres: Array<Genre> = [
     new Genre('Action', 28, 'b'),
     new Genre('Animation', 16, 'c'),
     new Genre('Dokumentar', 99, 'd'),
@@ -76,7 +72,7 @@ const genres: Array<IGenre> = [
     new Genre('Musik', 10402, 'n'),
     new Genre('Mysterie', 9648, 'o'),
     new Genre('Romantik', 10749, 'p')
-]; */
+];
 
 const providers: Array<Provider> = [
     new Provider('Amazon Prime', 119, 'b'),
