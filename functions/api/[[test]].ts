@@ -1,11 +1,14 @@
 /* eslint-disable */
 import Provider from '../vo/Provider';
 import Genre from '../vo/Genre';
+import IMoviesPage from '../../src/dto/IMoviesPage';
+import { discover } from '../Tmdb';
+import { movieDiscoverPageSchemaToMoviesPage } from '../DTOSchemaAdapter';
 
 export async function onRequest({params}): Promise<Response> {
     const segments: Array<string> = params.test;
     if (segments.length === 4) {
-        let query = '?';
+        let query = '';
         const providers = segments[0];
         const providersQuery = getProvidersQuery(providers);
         if (providersQuery) {
@@ -16,9 +19,17 @@ export async function onRequest({params}): Promise<Response> {
         if (genresQuery) {
             query += 'with_genres=' + genresQuery + '&';
         }
-        return getResponse(query);
+        const [page, error] = await discover(query);
+        if (page) {
+            const moviesPage: IMoviesPage = movieDiscoverPageSchemaToMoviesPage(page);
+            return getResponse(JSON.stringify(moviesPage, null, 4));
+        }
+        if (error) {
+            return getResponse(JSON.stringify({ error: Error }, null, 4));
+        }
+        return getResponse(JSON.stringify(new Error('Cloud network error'), null, 4));
     }
-    return getResponse('No query string');
+    return getResponse(JSON.stringify(params));
 }
 
 function getResponse(body: string): Response {
