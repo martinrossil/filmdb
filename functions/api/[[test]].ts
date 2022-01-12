@@ -37,19 +37,20 @@ export async function onRequest({ params, env }): Promise<Response> {
             return getResponse(JSON.stringify({ error: Error }, null, 4));
         }
         return getResponse(JSON.stringify(new Error('Cloud network error'), null, 4));
+    } else {
+        const [page, error] = await discover('');
+        if (page) {
+            const moviesPage: IMoviesPage = movieDiscoverPageSchemaToMoviesPage(page);
+            const moviesPageString = JSON.stringify(moviesPage, null, 4);
+            const ONE_DAY = 60 * 60 * 24;
+            await TEST.put(path, moviesPageString, { expirationTtl: ONE_DAY })
+            return getResponse(moviesPageString);
+        }
+        if (error) {
+            return getResponse(JSON.stringify({ error: Error }, null, 4));
+        }
+        return getResponse(JSON.stringify(new Error('Cloud network error'), null, 4));
     }
-    const [page, error] = await discover();
-    if (page) {
-        const moviesPage: IMoviesPage = movieDiscoverPageSchemaToMoviesPage(page);
-        const moviesPageString = JSON.stringify(moviesPage, null, 4);
-        const ONE_DAY = 60 * 60 * 24;
-        await TEST.put(path, moviesPageString, { expirationTtl: ONE_DAY })
-        return getResponse(moviesPageString);
-    }
-    if (error) {
-        return getResponse(JSON.stringify({ error: Error }, null, 4));
-    }
-    return getResponse(JSON.stringify(new Error('Cloud network error'), null, 4));
 }
 
 function getResponse(body: string): Response {
