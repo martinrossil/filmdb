@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 import Provider from '../vo/Provider';
 import Genre from '../vo/Genre';
 import IMoviesPage from '../../src/dto/IMoviesPage';
