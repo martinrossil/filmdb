@@ -4,7 +4,6 @@ import Genre from '../vo/Genre';
 import IMoviesPage from '../../src/dto/IMoviesPage';
 import { discover } from '../Tmdb';
 import { movieDiscoverPageSchemaToMoviesPage } from '../DTOSchemaAdapter';
-import MoviesPage from '../../src/dto/MoviesPage';
 
 export async function onRequest({ params, env }): Promise<Response> {
     const TEST = env.TEST;
@@ -39,7 +38,12 @@ export async function onRequest({ params, env }): Promise<Response> {
         }
         return getResponse(JSON.stringify(new Error('Cloud network error'), null, 4));
     } 
-    return getResponse(JSON.stringify(new MoviesPage()));
+    return getResponse(JSON.stringify({
+        movies: [],
+        page: 0,
+        totalMovies: 0,
+        totalPages: 0
+    }));
 }
 
 function getResponse(body: string): Response {
