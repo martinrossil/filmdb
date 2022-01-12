@@ -9,6 +9,10 @@ export async function onRequest({ params, env }): Promise<Response> {
     const TEST = env.TEST;
     const segments: Array<string> = params.test;
     const path: string = segments.join('/');
+    return getResponse(JSON.stringify({
+        segments,
+        path
+    }));
     if (segments.length === 4) {
         const value: string | null = await TEST.get(path);
         if (value !== null) {
