@@ -2,8 +2,14 @@ import { TMDB_BASE_URL, TMDB_TOKEN } from './Config';
 import IMovie from '../src/dto/IMovie';
 import { MovieDiscoverPageSchema } from './schema/MovieDiscoverPageSchema';
 
-export async function discover(query = ''): Promise<[MovieDiscoverPageSchema | null, Error | null]> {
-    const url = TMDB_BASE_URL + '/discover/movie?' + query + '&language=da-DK&watch_region=DK&include_adult=false';
+export async function discover(query:string): Promise<[MovieDiscoverPageSchema | null, Error | null]> {
+    let url = TMDB_BASE_URL + '/discover/movie?';
+    if (query) {
+        url += query + '&language=da-DK&watch_region=DK&include_adult=false';
+    } else {
+        url += 'language=da-DK&watch_region=DK&include_adult=false';
+    }
+    // const url = TMDB_BASE_URL + '/discover/movie?' + query + '&language=da-DK&watch_region=DK&include_adult=false';
     try {
         const response = await fetch(url, requestInit());
         const movieDiscoverPageSchema: MovieDiscoverPageSchema = await response.json();
