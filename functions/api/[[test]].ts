@@ -43,7 +43,7 @@ export async function onRequest({ params, env }): Promise<Response> {
             const moviesPage: IMoviesPage = movieDiscoverPageSchemaToMoviesPage(page);
             const moviesPageString = JSON.stringify(moviesPage, null, 4);
             const ONE_DAY = 60 * 60 * 24;
-            await TEST.put(path, moviesPageString, { expirationTtl: ONE_DAY })
+            await TEST.put('/', moviesPageString, { expirationTtl: ONE_DAY })
             return getResponse(moviesPageString);
         }
         if (error) {
