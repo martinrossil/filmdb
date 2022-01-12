@@ -7,7 +7,7 @@ import { movieDiscoverPageSchemaToMoviesPage } from '../DTOSchemaAdapter';
 
 export async function onRequest({ params, env }): Promise<Response> {
     const TEST = env.TEST;
-    const segments: Array<string> = params.test;
+    const segments: Array<string> = params;
     const path: string = segments.join('/');
     return getResponse(JSON.stringify({
         segments,
