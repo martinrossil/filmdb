@@ -4,15 +4,12 @@ import Genre from '../vo/Genre';
 import IMoviesPage from '../../src/dto/IMoviesPage';
 import { discover } from '../Tmdb';
 import { movieDiscoverPageSchemaToMoviesPage } from '../DTOSchemaAdapter';
+import MoviesPage from '../../src/dto/MoviesPage';
 
 export async function onRequest({ params, env }): Promise<Response> {
     const TEST = env.TEST;
     const segments: Array<string> = params;
     const path: string = segments.join('/');
-    return getResponse(JSON.stringify({
-        segments,
-        path
-    }));
     if (segments.length === 4) {
         const value: string | null = await TEST.get(path);
         if (value !== null) {
@@ -41,20 +38,8 @@ export async function onRequest({ params, env }): Promise<Response> {
             return getResponse(JSON.stringify({ error: Error }, null, 4));
         }
         return getResponse(JSON.stringify(new Error('Cloud network error'), null, 4));
-    } else {
-        const [page, error] = await discover('');
-        if (page) {
-            const moviesPage: IMoviesPage = movieDiscoverPageSchemaToMoviesPage(page);
-            const moviesPageString = JSON.stringify(moviesPage, null, 4);
-            // const ONE_DAY = 60 * 60 * 24;
-            // await TEST.put('/', moviesPageString, { expirationTtl: ONE_DAY })
-            return getResponse(moviesPageString);
-        }
-        if (error) {
-            return getResponse(JSON.stringify({ error: Error }, null, 4));
-        }
-        return getResponse(JSON.stringify(new Error('Cloud network error'), null, 4));
-    }
+    } 
+    return getResponse(JSON.stringify(new MoviesPage()));
 }
 
 function getResponse(body: string): Response {
