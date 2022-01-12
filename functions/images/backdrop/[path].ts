@@ -7,17 +7,16 @@ export async function onRequest({request, params}): Promise<Response> {
     // Cloudflare-specific options are in the cf object.
     let options = {
         cf: {
-        image: {
+            image: {
                 width: 288,
                 height: 192,
                 fit: 'cover',
-                metadata: 'none',
-                format: ''
+                metadata: 'none'
             } 
         } 
     };
 
-    let headers: {
+    /*let headers: {
         'content-type': 'image/jpeg',
         'Cache-Control': 'max-age=86400'
     }
@@ -30,12 +29,12 @@ export async function onRequest({request, params}): Promise<Response> {
         options.cf.image.format = 'webp';
         // @ts-ignore
         headers['content-type'] = 'image/webp';
-      }
+      }*/
 
     const URL = 'https://image.tmdb.org/t/p/w1280/' + params.path + '.jpg';
-    const imageRequest = new Request(URL, {
+    /*const imageRequest = new Request(URL, {
         headers: headers
-    });
+    });*/
     // @ts-ignore
-    return fetch(imageRequest, options);
+    return fetch(URL, options);
 }
