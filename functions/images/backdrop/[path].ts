@@ -32,9 +32,7 @@ export async function onRequest({request, params}): Promise<Response> {
       }*/
 
     const URL = 'https://image.tmdb.org/t/p/w1280/' + params.path + '.jpg';
-    /*const imageRequest = new Request(URL, {
-        headers: headers
-    });*/
+    const imageRequest = new Request(URL);
     // @ts-ignore
-    return fetch(URL, options);
+    return fetch(imageRequest, options);
 }
