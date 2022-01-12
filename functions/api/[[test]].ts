@@ -4,11 +4,9 @@ import Genre from '../vo/Genre';
 import IMoviesPage from '../../src/dto/IMoviesPage';
 import { discover } from '../Tmdb';
 import { movieDiscoverPageSchemaToMoviesPage } from '../DTOSchemaAdapter';
-import { KVNamespace } from '../interfaces/ICloudFlare';
 
-declare const TEST: KVNamespace;
-
-export async function onRequest({ params }): Promise<Response> {
+export async function onRequest({ params, env }): Promise<Response> {
+    const TEST = env.TEST;
     try {
         const segments: Array<string> = params.test;
         if (segments.length === 4) {
