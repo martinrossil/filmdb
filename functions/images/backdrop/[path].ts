@@ -4,35 +4,11 @@
  * w300 w780 w1280 original
  */
 export async function onRequest({request, params}): Promise<Response> {
-    // Cloudflare-specific options are in the cf object.
-    let options = {
-        cf: {
-            image: {
-                width: 288,
-                height: 192,
-                fit: 'cover',
-                metadata: 'none'
-            } 
-        } 
-    };
-
-    /*let headers: {
-        'content-type': 'image/jpeg',
-        'Cache-Control': 'max-age=86400'
-    }
-    const accept = request.headers.get("Accept");
-    if (/image\/avif/.test(accept)) {
-        options.cf.image.format = 'avif';
-        // @ts-ignore
-        headers['content-type'] = 'image/avif';
-      } else if (/image\/webp/.test(accept)) {
-        options.cf.image.format = 'webp';
-        // @ts-ignore
-        headers['content-type'] = 'image/webp';
-      }*/
-
-    const URL = 'https://image.tmdb.org/t/p/w1280/' + params.path + '.jpg';
-    const imageRequest = new Request(URL);
-    // @ts-ignore
-    return fetch(imageRequest, options);
+    
+    const URL = 'https://imagedelivery.net/7G7XxXgIOc0EMphWhmzfNA/692acda2-236a-4905-b18c-1d13e55ce200/288X192';
+    // const URL = 'https://image.tmdb.org/t/p/w1280/' + params.path + '.jpg';
+    const imageRequest = new Request(URL, {
+        headers: request.headers
+    });
+    return fetch(imageRequest);
 }
