@@ -1,9 +1,7 @@
 import { ArrayCollection, IArrayCollection } from 'enta';
 import IMovie from '../dto/IMovie';
-import Genre from '../vo/Genre';
-import IGenre from '../vo/IGenre';
-import IProvider from '../vo/IProvider';
-import Provider from '../vo/Provider';
+import ILink from '../vo/ILink';
+import Link from '../vo/Link';
 
 export default class Model {
     private static _movies: IArrayCollection<IMovie>;
@@ -14,50 +12,49 @@ export default class Model {
         return this._movies;
     }
 
-    private static _genres: IArrayCollection<IGenre>;
-    public static get genres(): IArrayCollection<IGenre> {
+    private static _genres: IArrayCollection<ILink>;
+    public static get genres(): IArrayCollection<ILink> {
         if (!this._genres) {
-            const genres: Array<IGenre> = [
-                new Genre('Action', 28, 'b'),
-                new Genre('Animation', 16, 'c'),
-                new Genre('Dokumentar', 99, 'd'),
-                new Genre('Drama', 18, 'e'),
-                new Genre('Eventyr', 12, 'f'),
-                new Genre('Familie', 10751, 'g'),
-                new Genre('Fantasy', 14, 'h'),
-                new Genre('Gyser', 27, 'i'),
-                new Genre('Historie', 36, 'j'),
-                new Genre('Komedie', 35, 'k'),
-                new Genre('Krig', 10752, 'l'),
-                new Genre('Krimi', 80, 'm'),
-                new Genre('Musik', 10402, 'n'),
-                new Genre('Mysterie', 9648, 'o'),
-                new Genre('Romantik', 10749, 'p')
+            const genres: Array<ILink> = [
+                new Link('Action', 'b', '/a/b/a/1'),
+                new Link('Animation', 'c', '/a/c/a/1'),
+                new Link('Dokumentar', 'd', '/a/d/a/1'),
+                new Link('Drama', 'e', '/a/e/a/1'),
+                new Link('Eventyr', 'f', '/a/f/a/1'),
+                new Link('Familie', 'g', '/a/g/a/1'),
+                new Link('Fantasy', 'h', '/a/h/a/1'),
+                new Link('Gyser', 'i', '/a/i/a/1'),
+                new Link('Historie', 'j', '/a/j/a/1'),
+                new Link('Komedie', 'k', '/a/k/a/1'),
+                new Link('Krig', 'l', '/a/l/a/1'),
+                new Link('Krimi', 'm', '/a/m/a/1'),
+                new Link('Musik', 'n', '/a/n/a/1'),
+                new Link('Mysterie', 'o', '/a/o/a/1'),
+                new Link('Romantik', 'p', '/a/p/a/1')
             ];
             this._genres = new ArrayCollection(genres);
         }
         return this._genres;
     }
 
-    private static _providers: IArrayCollection<IProvider>;
-    public static get providers(): IArrayCollection<IProvider> {
+    private static _providers: IArrayCollection<ILink>;
+    public static get providers(): IArrayCollection<ILink> {
         if (!this._providers) {
-            const providers: Array<IProvider> = [
-                new Provider('Amazon Prime', 119, 'b'),
-                new Provider('Apple Itunes', 2, 'c'),
-                new Provider('Apple TV+', 350, 'd'),
-                new Provider('Blockbuster', 423, 'e'),
-                new Provider('C More', 77, 'f'),
-                // new Provider('Dansk Filmskat', 621, 'g'),
-                new Provider('Disney+', 337, 'g'),
-                new Provider('DR TV', 620, 'h'),
-                new Provider('Filmstriben', 443, 'i'),
-                new Provider('HBO Max', 384, 'j'),
-                new Provider('Netflix', 8, 'k'),
-                new Provider('Paramount+', 531, 'l'),
-                new Provider('SF Anytime', 426, 'm'),
-                new Provider('TV2 Play', 383, 'n'),
-                new Provider('Viaplay', 76, 'o')
+            const providers: Array<ILink> = [
+                new Link('Amazon Prime', 'b', '/b/a/a/1'),
+                new Link('Apple Itunes', 'c', '/c/a/a/1'),
+                new Link('Apple TV+', 'd', '/d/a/a/1'),
+                new Link('Blockbuster', 'e', '/e/a/a/1'),
+                new Link('C More', 'f', '/f/a/a/1'),
+                new Link('Disney+', 'g', '/g/a/a/1'),
+                new Link('DR TV', 'h', '/h/a/a/1'),
+                new Link('Filmstriben', 'i', '/i/a/a/1'),
+                new Link('HBO Max', 'j', '/j/a/a/1'),
+                new Link('Netflix', 'k', '/k/a/a/1'),
+                new Link('Paramount+', 'l', '/l/a/a/1'),
+                new Link('SF Anytime', 'm', '/m/a/a/1'),
+                new Link('TV2 Play', 'n', '/n/a/a/1'),
+                new Link('Viaplay', 'o', '/o/a/a/1')
             ];
             this._providers = new ArrayCollection(providers);
         }
