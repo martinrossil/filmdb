@@ -12,6 +12,9 @@
   Cache-Control: public, max-age=604800
 /robots.txt
   Cache-Control: public, max-age=604800
-/index.html
+https://filmdb.pages.dev/
   X-Frame-Options: DENY
-  X-XSS-Protection: 0
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: document-domain=()
+  Content-Security-Policy: script-src 'self'; frame-ancestors 'none';
