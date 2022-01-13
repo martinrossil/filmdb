@@ -11,7 +11,7 @@ export default class FilmDB extends ApplicationElement {
     public constructor() {
         super();
         this.style.height = '100vh';
-        this.backgroundColor = Colors.BLUE_DARKEST;
+        document.body.style.backgroundColor = Colors.BLUE_DARKEST.toString();
         this.addElements([
             new AppBar(),
             new ProvidersNavigation(),
