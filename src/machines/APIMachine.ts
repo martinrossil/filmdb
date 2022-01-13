@@ -25,13 +25,7 @@ export default class APIMachine extends Machine<FilmDB> {
         Model.movies.removeAll();
         console.log(e.detail);
         try {
-            let url = 'https://filmdb.pages.dev/api';
-            if (e.detail === '/') {
-                url += '/a/a/a/1';
-            } else {
-                url += e.detail;
-            }
-            const response = await fetch(url);
+            const response = await fetch('https://filmdb.pages.dev/api' + e.detail);
             const moviesPageSJON: IMoviesPage = await response.json();
             const moviesPage: IMoviesPage = moviesPageJSONToMoviesPage(moviesPageSJON);
             console.log('page', moviesPage);
