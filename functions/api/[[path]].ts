@@ -45,6 +45,7 @@ function getResponse(body: string): Response {
     return new Response(body, {
         headers: {
             'content-type': 'application/json;charset=UTF-8',
+            'Cache-Control': 'public, max-age=86400',
             'Access-Control-Allow-Origin': '*'
         }
     });
