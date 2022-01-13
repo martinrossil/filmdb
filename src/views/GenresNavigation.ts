@@ -1,10 +1,10 @@
 import { DataContainer, VerticalLayout } from 'enta';
 import Model from '../state/Model';
 import Colors from '../theme/Colors';
-import IGenre from '../vo/IGenre';
-import GenreDataRenderer from './GenreDataRenderer';
+import ILink from '../vo/ILink';
+import LinkRenderer from './LinkRenderer';
 
-export default class GenresNavigation extends DataContainer<IGenre> {
+export default class GenresNavigation extends DataContainer<ILink> {
     public constructor() {
         super();
         this.name = 'GenresNavigation';
@@ -16,7 +16,7 @@ export default class GenresNavigation extends DataContainer<IGenre> {
         this.paddingBottom = 8;
         this.paddingX = 8;
         this.percentHeight = 100;
-        this.DataRendererClass = GenreDataRenderer;
+        this.DataRendererClass = LinkRenderer;
         this.dataProvider = Model.genres;
     }
 }
