@@ -3,7 +3,6 @@ import FilmDB from '../FilmDB';
 import Model from '../state/Model';
 import IMoviesPage from '../dto/IMoviesPage';
 import { moviesPageJSONToMoviesPage } from '../dto/JSONAdapter';
-import { getQueryParamsFromPath } from '../RouteUtil';
 
 export default class APIMachine extends Machine<FilmDB> {
     public constructor(host: FilmDB) {
