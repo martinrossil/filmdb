@@ -9,7 +9,7 @@ export function getQueryString(providerSegment: string, genreSegment: string): s
         }
     }
     if (providersQuery) {
-        providersQuery = 'with_watch_providers=' + providersQuery.substring(0, providersQuery.length - 1) + '&';
+        providersQuery = 'with_watch_providers=' + providersQuery.substring(0, providersQuery.length - 1);
     }
 
     let genresQuery = '';
@@ -21,7 +21,13 @@ export function getQueryString(providerSegment: string, genreSegment: string): s
     if (genresQuery) {
         genresQuery = 'with_genres=' + genresQuery.substring(0, genresQuery.length - 1);
     }
-    return providersQuery + genresQuery;
+    if (providersQuery && genresQuery) {
+        return providersQuery + '&' + genresQuery;
+    }
+    if (providersQuery && !genresQuery) {
+        return providersQuery;
+    }
+    return genresQuery;
 }
 
 const providers: Array<Provider> = [
