@@ -1,10 +1,10 @@
 import { DataContainer, VerticalLayout } from 'enta';
 import Model from '../state/Model';
 import Colors from '../theme/Colors';
-import IProvider from '../vo/IProvider';
-import ProviderDataRenderer from './ProviderDataRenderer';
+import ILink from '../vo/ILink';
+import LinkRenderer from './LinkRenderer';
 
-export default class ProvidersNavigation extends DataContainer<IProvider> {
+export default class ProvidersNavigation extends DataContainer<ILink> {
     public constructor() {
         super();
         this.name = 'ProvidersNavigation';
@@ -15,7 +15,7 @@ export default class ProvidersNavigation extends DataContainer<IProvider> {
         this.paddingBottom = 8;
         this.paddingX = 8;
         this.percentHeight = 100;
-        this.DataRendererClass = ProviderDataRenderer;
+        this.DataRendererClass = LinkRenderer;
         this.dataProvider = Model.providers;
     }
 }
