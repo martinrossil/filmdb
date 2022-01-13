@@ -1,12 +1,13 @@
 /* eslint-disable */
-import Provider from '../vo/Provider';
+/*import Provider from '../vo/Provider';
 import Genre from '../vo/Genre';
 import IMoviesPage from '../../src/dto/IMoviesPage';
 import { discover } from '../Tmdb';
-import { movieDiscoverPageSchemaToMoviesPage } from '../DTOSchemaAdapter';
+import { movieDiscoverPageSchemaToMoviesPage } from '../DTOSchemaAdapter';*/
 
 export async function onRequest({ params, env }): Promise<Response> {
-    const TEST = env.TEST;
+    return new Response(JSON.stringify(params));
+    /*const TEST = env.TEST;
     const segments: Array<string> = params.test; 
     const path: string = segments.join('/');
     if (segments.length === 4) {
@@ -43,10 +44,10 @@ export async function onRequest({ params, env }): Promise<Response> {
         page: 0,
         totalMovies: 0,
         totalPages: 0
-    }));
+    })); */
 }
 
-function getResponse(body: string): Response {
+/*function getResponse(body: string): Response {
     return new Response(body, {
         headers: {
             'content-type': 'application/json;charset=UTF-8',
@@ -116,3 +117,4 @@ const providers: Array<Provider> = [
     new Provider('TV2 Play', 383, 'n'),
     new Provider('Viaplay', 76, 'o')
 ];
+*/
