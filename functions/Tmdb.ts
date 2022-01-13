@@ -4,12 +4,12 @@ import { MovieDiscoverPageSchema } from './schema/MovieDiscoverPageSchema';
 
 export async function discover(query:string): Promise<[MovieDiscoverPageSchema | null, Error | null]> {
     let url = TMDB_BASE_URL + '/discover/movie?';
+    const end = 'language=da-DK&watch_region=DK&include_adult=false';
     if (query) {
-        url += query + '&language=da-DK&watch_region=DK&include_adult=false';
+        url += query + '&' + end;
     } else {
-        url += 'language=da-DK&watch_region=DK&include_adult=false';
+        url += end;
     }
-    // const url = TMDB_BASE_URL + '/discover/movie?' + query + '&language=da-DK&watch_region=DK&include_adult=false';
     try {
         const response = await fetch(url, requestInit());
         const movieDiscoverPageSchema: MovieDiscoverPageSchema = await response.json();
