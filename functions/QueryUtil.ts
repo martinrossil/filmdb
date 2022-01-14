@@ -28,7 +28,8 @@ export function getQueryString(providerSegment: string, genreSegment: string, so
     } else if (sortSegment === 'v') {
         sortQuery = 'sort_by=vote_average.desc&vote_count.gte=1000&';
     } else if (sortSegment === 'r') {
-        sortQuery = 'sort_by=release_date.desc&'
+        const date = new Date().toISOString().split('T')[0];
+        sortQuery = 'sort_by=primary_release_date.desc&primary_release_date.lte=' + date + '&';
     }
 
     let pageQuery = '';
