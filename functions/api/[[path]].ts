@@ -9,13 +9,15 @@ export async function onRequest({ params, env }): Promise<Response> {
     if (params.path) {
         const segments: Array<string> = params.path;
         if (segments.length === 4) {
-            const key: string = segments.join('/');
+            const queryString = getQueryString(segments[0], segments[1], segments[2], segments[3]);
+            return getResponse(queryString);
+            /*const key: string = segments.join('/');
             const value: string | null = await TEST.get(key);
             if (value !== null) {
                 return getResponse(value);
             }
             const queryString = getQueryString(segments[0], segments[1], segments[2], segments[3]);
-            return await getDicover(queryString, key, TEST);
+            return await getDicover(queryString, key, TEST);*/
         }
         return await getDicover('', '/', TEST);
     }
