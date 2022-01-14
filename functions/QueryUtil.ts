@@ -1,7 +1,7 @@
 import Provider from './vo/Provider';
 import Genre from './vo/Genre';
 
-export function getQueryString(providerSegment: string, genreSegment: string): string {
+export function getQueryString(providerSegment: string, genreSegment: string, sortSegment: string, pageSegment: string): string {
     let providersQuery = '';
     for (const provider of providers) {
         if (providerSegment.indexOf(provider.slug) !== -1) {
@@ -9,7 +9,7 @@ export function getQueryString(providerSegment: string, genreSegment: string): s
         }
     }
     if (providersQuery) {
-        providersQuery = 'with_watch_providers=' + providersQuery.substring(0, providersQuery.length - 1);
+        providersQuery = 'with_watch_providers=' + providersQuery.substring(0, providersQuery.length - 1) + '&';
     }
 
     let genresQuery = '';
@@ -19,15 +19,26 @@ export function getQueryString(providerSegment: string, genreSegment: string): s
         }
     }
     if (genresQuery) {
-        genresQuery = 'with_genres=' + genresQuery.substring(0, genresQuery.length - 1);
+        genresQuery = 'with_genres=' + genresQuery.substring(0, genresQuery.length - 1) + '&';
     }
-    if (providersQuery && genresQuery) {
-        return providersQuery + '&' + genresQuery;
+
+    let sortQuery = '';
+    if (sortSegment === 'p') {
+        sortQuery = 'sort_by=popularity.desc&';
+    } else if (sortSegment === 'v') {
+        sortQuery = 'sort_by=vote_average.desc&vote_count.gte=1000&';
+    } else if (sortSegment === 'r') {
+        sortQuery = 'sort_by=release_date.desc&'
     }
-    if (providersQuery && !genresQuery) {
-        return providersQuery;
+
+    let pageQuery = '';
+    if (pageSegment) {
+        const page = parseInt(pageSegment);
+        if (!isNaN(page) && page > 0) {
+            pageQuery = 'page=' + page + '&';
+        }
     }
-    return genresQuery;
+    return providersQuery + genresQuery + sortQuery + pageQuery;
 }
 
 const providers: Array<Provider> = [
