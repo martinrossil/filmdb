@@ -14,7 +14,7 @@ export async function onRequest({ params, env }): Promise<Response> {
             if (value !== null) {
                 return getResponse(value);
             }
-            const queryString = getQueryString(segments[0], segments[1], segments[3], segments[4]);
+            const queryString = getQueryString(segments[0], segments[1], segments[2], segments[3]);
             return await getDicover(queryString, key, TEST);
         }
         return await getDicover('', '/', TEST);
