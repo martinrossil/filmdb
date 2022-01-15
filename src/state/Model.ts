@@ -47,15 +47,15 @@ export default class Model {
                 new Link('Blockbuster', 'e', '/e/a/a/1'),
                 new Link('C More', 'f', '/f/a/a/1'),
                 new Link('Dansk Filmskat', 'g', '/g/a/a/1'),
-                new Link('Disney+', 'h', '/g/a/a/1'),
-                new Link('DR TV', 'i', '/h/a/a/1'),
-                new Link('Filmstriben', 'j', '/i/a/a/1'),
-                new Link('HBO Max', 'k', '/j/a/a/1'),
-                new Link('Netflix', 'l', '/k/a/a/1'),
-                new Link('Paramount+', 'm', '/l/a/a/1'),
-                new Link('SF Anytime', 'n', '/m/a/a/1'),
-                new Link('TV2 Play', 'o', '/n/a/a/1'),
-                new Link('Viaplay', 'p', '/o/a/a/1')
+                new Link('Disney+', 'h', '/h/a/a/1'),
+                new Link('DR TV', 'i', '/i/a/a/1'),
+                new Link('Filmstriben', 'j', '/j/a/a/1'),
+                new Link('HBO Max', 'k', '/k/a/a/1'),
+                new Link('Netflix', 'l', '/l/a/a/1'),
+                new Link('Paramount+', 'm', '/m/a/a/1'),
+                new Link('SF Anytime', 'n', '/n/a/a/1'),
+                new Link('TV2 Play', 'o', '/o/a/a/1'),
+                new Link('Viaplay', 'p', '/p/a/a/1')
             ];
             this._providers = new ArrayCollection(providers);
         }
