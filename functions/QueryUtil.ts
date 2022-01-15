@@ -23,11 +23,11 @@ export function getQueryString(providerSegment: string, genreSegment: string, so
     }
 
     let sortQuery = '';
-    if (sortSegment === 'p') {
+    if (sortSegment === 'a') {
         sortQuery = 'sort_by=popularity.desc&';
-    } else if (sortSegment === 'v') {
+    } else if (sortSegment === 'b') {
         sortQuery = 'sort_by=vote_average.desc&vote_count.gte=200&';
-    } else if (sortSegment === 'r') {
+    } else if (sortSegment === 'c') {
         const date = new Date().toISOString().split('T')[0];
         sortQuery = 'sort_by=primary_release_date.desc&primary_release_date.lte=' + date + '&';
     }
@@ -48,16 +48,16 @@ const providers: Array<Provider> = [
     new Provider('Apple TV+', 350, 'd'),
     new Provider('Blockbuster', 423, 'e'),
     new Provider('C More', 77, 'f'),
-    // new Provider('Dansk Filmskat', 621, 'g'),
-    new Provider('Disney+', 337, 'g'),
-    new Provider('DR TV', 620, 'h'),
-    new Provider('Filmstriben', 443, 'i'),
-    new Provider('HBO Max', 384, 'j'),
-    new Provider('Netflix', 8, 'k'),
-    new Provider('Paramount+', 531, 'l'),
-    new Provider('SF Anytime', 426, 'm'),
-    new Provider('TV2 Play', 383, 'n'),
-    new Provider('Viaplay', 76, 'o')
+    new Provider('Dansk Filmskat', 621, 'g'),
+    new Provider('Disney+', 337, 'h'),
+    new Provider('DR TV', 620, 'i'),
+    new Provider('Filmstriben', 443, 'j'),
+    new Provider('HBO Max', 384, 'k'),
+    new Provider('Netflix', 8, 'l'),
+    new Provider('Paramount+', 531, 'm'),
+    new Provider('SF Anytime', 426, 'n'),
+    new Provider('TV2 Play', 383, 'o'),
+    new Provider('Viaplay', 76, 'p')
 ];
 
 const genres: Array<Genre> = [
