@@ -7,27 +7,38 @@ import { discover } from '../Tmdb';
 export async function onRequest({ params }): Promise<Response> {
     if (params.path) {
         const segments: Array<string> = params.path;
-        if (segments.length === 4) {
+        return getResponse(JSON.stringify(segments));
+        /*if (segments.length === 4) {
             const queryString = getQueryString(segments[0], segments[1], segments[2], segments[3]);
             return await getDicover(queryString);
         }
-        return await getDicover('');
+        return await getDicover('');*/
     }
-    return await getDicover('');
+    return getResponse(JSON.stringify({ error: 'no path' }));
+    // return await getDicover('');
 }
 
-async function getDicover(query: string): Promise<Response> {
+/*async function getDicover(query: string): Promise<Response> {
     const [page, error] = await discover(query);
         if (page) {
             const moviesPage: IMoviesPage = movieDiscoverPageSchemaToMoviesPage(page);
             const moviesPageString = JSON.stringify(moviesPage, null, 4);
-            const ONE_DAY = 60 * 60 * 24;
             return getResponse(moviesPageString);
         }
         if (error) {
             return getResponse(JSON.stringify({ error: Error }, null, 4));
         }
         return getResponse(JSON.stringify(new Error('Cloud network error'), null, 4));
+}*/
+
+function getResponse(body: string): Response {
+    return new Response(body, {
+        headers: {
+            'content-type': 'application/json;charset=UTF-8',
+            'Cache-Control': 'public, max-age=86400',
+            'Access-Control-Allow-Origin': '*'
+        }
+    });
 }
 
 
@@ -73,12 +84,3 @@ async function getDicover(query: string, key: string, MOVIES_PAGE): Promise<Resp
 
 
 */
-function getResponse(body: string): Response {
-    return new Response(body, {
-        headers: {
-            'content-type': 'application/json;charset=UTF-8',
-            'Cache-Control': 'public, max-age=86400',
-            'Access-Control-Allow-Origin': '*'
-        }
-    });
-}
