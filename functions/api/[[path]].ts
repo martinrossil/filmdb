@@ -4,37 +4,24 @@ import { movieDiscoverPageSchemaToMoviesPage } from '../DTOSchemaAdapter';
 import { getQueryString } from '../QueryUtil';
 import { discover } from '../Tmdb';
 
-export async function onRequest({ params, env }): Promise<Response> {
-    // const TEST = env.TEST;
+export async function onRequest({ params }): Promise<Response> {
     if (params.path) {
         const segments: Array<string> = params.path;
         if (segments.length === 4) {
-            /*const key: string = segments.join('/');
-            const value: string | null = await TEST.get(key);
-            if (value !== null) {
-                return getResponse(value);
-            }*/
             const queryString = getQueryString(segments[0], segments[1], segments[2], segments[3]);
             return await getDicover(queryString);
         }
         return await getDicover('');
-        // return await getDicover('', '/', TEST);
     }
-    /*const value: string | null = await TEST.get('/');
-    if (value !== null) {
-        return getResponse(value);
-    }*/
     return await getDicover('');
-    // return await getDicover('', '/', TEST);
 }
-// async function getDicover(query: string, key: string, TEST): Promise<Response> {
+
 async function getDicover(query: string): Promise<Response> {
     const [page, error] = await discover(query);
         if (page) {
             const moviesPage: IMoviesPage = movieDiscoverPageSchemaToMoviesPage(page);
             const moviesPageString = JSON.stringify(moviesPage, null, 4);
             const ONE_DAY = 60 * 60 * 24;
-            // await TEST.put(key, moviesPageString, { expirationTtl: ONE_DAY })
             return getResponse(moviesPageString);
         }
         if (error) {
@@ -43,6 +30,49 @@ async function getDicover(query: string): Promise<Response> {
         return getResponse(JSON.stringify(new Error('Cloud network error'), null, 4));
 }
 
+
+
+/* WITH KV STORE */
+/*
+export async function onRequest({ params, env }): Promise<Response> {
+    const MOVIES_PAGE = env.TEST;
+    if (params.path) {
+        const segments: Array<string> = params.path;
+        if (segments.length === 4) {
+            const key: string = segments.join('/');
+            const value: string | null = await MOVIES_PAGE.get(key);
+            if (value !== null) {
+                return getResponse(value);
+            }
+            const queryString = getQueryString(segments[0], segments[1], segments[2], segments[3]);
+            return await getDicover(queryString, key, MOVIES_PAGE);
+        }
+        return await getDicover('', '/', MOVIES_PAGE);
+    }
+    const value: string | null = await MOVIES_PAGE.get('/');
+    if (value !== null) {
+        return getResponse(value);
+    }
+    return await getDicover('', '/', MOVIES_PAGE);
+}
+
+async function getDicover(query: string, key: string, MOVIES_PAGE): Promise<Response> {
+    const [page, error] = await discover(query);
+        if (page) {
+            const moviesPage: IMoviesPage = movieDiscoverPageSchemaToMoviesPage(page);
+            const moviesPageString = JSON.stringify(moviesPage, null, 4);
+            const ONE_DAY = 60 * 60 * 24;
+            await MOVIES_PAGE.put(key, moviesPageString, { expirationTtl: ONE_DAY })
+            return getResponse(moviesPageString);
+        }
+        if (error) {
+            return getResponse(JSON.stringify({ error: Error }, null, 4));
+        }
+        return getResponse(JSON.stringify(new Error('Cloud network error'), null, 4));
+}
+
+
+*/
 function getResponse(body: string): Response {
     return new Response(body, {
         headers: {
