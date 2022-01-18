@@ -5,7 +5,8 @@
  export async function onRequest({params, env}): Promise<Response> {
     const BASE_URL = 'https://image.tmdb.org/t/p/w300/';
     const uid: string = params.uid;
-    const BACKDROP_PATHS = env.BACKDROP_PATHS;
+    return getResponse(JSON.stringify(params));
+    /* const BACKDROP_PATHS = env.BACKDROP_PATHS;
     const path: string | null = await BACKDROP_PATHS.get(uid);
     if (path) {
         const URL = BASE_URL + path;
@@ -13,7 +14,7 @@
     }
     const id = parseInt(uid, 16);
     const test = { id };
-    return getResponse(JSON.stringify(test));
+    return getResponse(JSON.stringify(test)); */
     /* const [movieImages, error] = await getMovieImages(id);
     if (movieImages) {
         if (movieImages.backdrops.length) {
