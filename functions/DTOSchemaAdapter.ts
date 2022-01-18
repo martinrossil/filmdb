@@ -18,9 +18,10 @@ export function movieDiscoverPageSchemaToMoviesPage(schema: MovieDiscoverPageSch
 
 function movieDiscoverSchemaToMovie(schema: MovieDiscoverSchema): IMovie {
     const movie: IMovie = new Movie();
-    if (schema.backdrop_path) {
+    movie.uid = schema.id.toString(16);
+    /* if (schema.backdrop_path) {
         movie.backdrop = schema.backdrop_path.substring(0, schema.backdrop_path.length - 4);
-    }
+    } */
     movie.title = schema.title;
     return movie;
 }

@@ -17,11 +17,11 @@ export default class MovieItemRenderer extends DataRenderer<IMovie> {
         if (this.data) {
             this.titleLabel.text = this.data.title;
             this.image.alt = this.data.title;
-            if (this.data.backdrop) {
+            /* if (this.data.backdrop) {
                 this.image.source = 'https://filmdb.pages.dev/images/backdrop' + this.data.backdrop;
             } else {
                 this.image.source = '';
-            }
+            } */
         }
     }
 

@@ -16,7 +16,7 @@ export function moviesPageJSONToMoviesPage(json: IMoviesPage): IMoviesPage {
 
 function movieJSONToMovie(json: IMovie): IMovie {
     const movie: IMovie = new Movie();
-    movie.backdrop = json['backdrop'];
+    movie.uid = json['uid'];
     movie.title = json['title'];
     return movie;
 }
