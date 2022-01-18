@@ -1,7 +1,7 @@
 /* eslint-disable */
 export async function onRequest({request}): Promise<Response> {
     const headers = [];
-    request.headers.array.forEach((value, key) => {
+    request.headers.forEach((value, key) => {
         headers.push({ key, value });
     });
     return new Response(JSON.stringify({ 
