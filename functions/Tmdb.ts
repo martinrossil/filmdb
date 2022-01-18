@@ -1,6 +1,7 @@
 import { TMDB_BASE_URL, TMDB_TOKEN } from './Config';
 import IMovie from '../src/dto/IMovie';
 import { MovieDiscoverPageSchema } from './schema/MovieDiscoverPageSchema';
+import { ImagesSchema } from './schema/ImagesSchema';
 
 export async function discover(query:string): Promise<[MovieDiscoverPageSchema | null, Error | null]> {
     let url = TMDB_BASE_URL + '/discover/movie?';
@@ -27,6 +28,20 @@ export async function getMovie(id: number): Promise<[IMovie | null, Error | null
     try {
         const response = await fetch(url, requestInit());
         const json: IMovie = await response.json();
+        if (response.ok) {
+            return [json, null];
+        }
+        return [null, new Error()];
+    } catch (error) {
+        return errorTupple(error);
+    }
+}
+
+export async function getMovieImages(id: number): Promise<[ImagesSchema | null, Error | null]> {
+    const url = TMDB_BASE_URL + '/movie/' + id + '/images';
+    try {
+        const response = await fetch(url, requestInit());
+        const json: ImagesSchema = await response.json();
         if (response.ok) {
             return [json, null];
         }
