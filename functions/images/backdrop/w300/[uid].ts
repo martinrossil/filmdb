@@ -1,27 +1,20 @@
 /* eslint-disable */
-// import { ImageSchema } from '../../../schema/ImageSchema';
-// import { getMovieImages } from '../../../Tmdb';
+import { ImageSchema } from '../../../schema/ImageSchema';
+import { getMovieImages } from '../../../Tmdb';
 
  export async function onRequest({params, env}): Promise<Response> {
     const BASE_URL = 'https://image.tmdb.org/t/p/w300/';
     const uid: string = params.uid;
-    try {
-        const BACKDROP_PATHS = env.BACKDROP_PATHS;
-        const path: string | null = await BACKDROP_PATHS.get(uid);
-        return getResponse(JSON.stringify({ path }));
-    } catch(error) {
-        return getResponse(JSON.stringify(error.message));
-    }
-    
-    /* 
+    const BACKDROP_PATHS = env.BACKDROP_PATHS;
+    const path: string | null = await BACKDROP_PATHS.get(uid);
+
     if (path) {
         const URL = BASE_URL + path;
         return fetch(URL);
     }
+
     const id = parseInt(uid, 16);
-    const test = { id };
-    return getResponse(JSON.stringify(test)); */
-    /* const [movieImages, error] = await getMovieImages(id);
+    const [movieImages, error] = await getMovieImages(id);
     if (movieImages) {
         if (movieImages.backdrops.length) {
             const backdrop: ImageSchema = movieImages.backdrops[0];
@@ -35,7 +28,7 @@
     if (error) {
         return getResponse(JSON.stringify({ error: Error }, null, 4));
     }
-    return getResponse(JSON.stringify(new Error('Cloud network error'), null, 4)); */
+    return getResponse(JSON.stringify(new Error('Cloud network error'), null, 4));
 }
 
 function getResponse(body: string): Response {
