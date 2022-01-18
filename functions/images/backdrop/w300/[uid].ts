@@ -5,9 +5,15 @@
  export async function onRequest({params, env}): Promise<Response> {
     const BASE_URL = 'https://image.tmdb.org/t/p/w300/';
     const uid: string = params.uid;
-    return getResponse(JSON.stringify(params));
-    /* const BACKDROP_PATHS = env.BACKDROP_PATHS;
-    const path: string | null = await BACKDROP_PATHS.get(uid);
+    try {
+        const BACKDROP_PATHS = env.BACKDROP_PATHS;
+        const path: string | null = await BACKDROP_PATHS.get(uid);
+        return getResponse(JSON.stringify({ path }));
+    } catch(error) {
+        return getResponse(JSON.stringify(error.message));
+    }
+    
+    /* 
     if (path) {
         const URL = BASE_URL + path;
         return fetch(URL);
