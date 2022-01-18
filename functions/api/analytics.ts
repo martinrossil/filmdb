@@ -13,5 +13,5 @@ export async function onRequest({request}): Promise<Response> {
             cfRay: request.headers.get('cf-ray')
         },*/
         cf: request.cf
-    }))
+    }, null, 4))
 };
