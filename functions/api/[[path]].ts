@@ -9,14 +9,14 @@ export async function onRequest({ params }): Promise<Response> {
         const segments: Array<string> = params.path;
         if (segments.length === 4) {
             const queryString = getQueryString(segments[0], segments[1], segments[2], segments[3]);
-            return await getDicover(queryString);
+            return await getDiscover(queryString);
         }
-        return await getDicover('');
+        return await getDiscover('');
     }
-    return await getDicover('');
+    return await getDiscover('');
 }
 
-async function getDicover(query: string): Promise<Response> {
+async function getDiscover(query: string): Promise<Response> {
     const [page, error] = await discover(query);
     if (page) {
         const moviesPage: IMoviesPage = movieDiscoverPageSchemaToMoviesPage(page);
