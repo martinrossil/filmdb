@@ -25,17 +25,14 @@ import { getMovieImages } from '../../../Tmdb';
             return fetch(URL);
         }
     }
-    if (error) {
-        return getResponse(JSON.stringify({ error: Error }, null, 4));
-    }
-    return getResponse(JSON.stringify(new Error('Cloud network error'), null, 4));
+    return getNotFound();
 }
 
-function getResponse(body: string): Response {
-    return new Response(body, {
+function getNotFound(): Response {
+    return new Response('', {
+        status: 404,
         headers: {
-            'content-type': 'application/json;charset=UTF-8',
-            'Cache-Control': 'public, max-age=86400',
+            'Cache-Control': 'public, max-age=0',
             'Access-Control-Allow-Origin': '*'
         }
     });
