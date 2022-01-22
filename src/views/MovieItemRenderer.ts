@@ -1,4 +1,4 @@
-import { DataRenderer, ILabelElement, VerticalLayout } from 'enta';
+import { DataRenderer, ILabelElement, ILinkContainer, LinkContainer, VerticalLayout } from 'enta';
 import SerifLabel from '../components/SerifLabel';
 import Colors from '../theme/Colors';
 import BackdropImage from './BackdropImage';
@@ -10,7 +10,7 @@ export default class MovieItemRenderer extends DataRenderer<IMovie> {
         this.clip = 'hidden';
         this.layout = new VerticalLayout(16);
         this.paddingBottom = 16;
-        this.addElements([this.image, this.titleLabel]);
+        this.addElements([this.linkContainer, this.titleLabel]);
     }
 
     protected dataChanged(): void {
@@ -18,7 +18,18 @@ export default class MovieItemRenderer extends DataRenderer<IMovie> {
             this.titleLabel.text = this.data.title;
             this.image.alt = this.data.title;
             this.image.source = 'https://filmdb.pages.dev/images/backdrop/w300/' + this.data.uid;
+            this.linkContainer.href = 'https://filmdb.pages.dev/film/' + this.data.uid;
         }
+    }
+
+    private _linkContainer!: ILinkContainer;
+    private get linkContainer(): ILinkContainer {
+        if (!this._linkContainer) {
+            this._linkContainer = new LinkContainer();
+            this._linkContainer.percentWidth = 100;
+            this._linkContainer.addElement(this.image);
+        }
+        return this._linkContainer;
     }
 
     private _image!: BackdropImage;
