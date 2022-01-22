@@ -23,8 +23,22 @@ export default class APIMachine extends Machine<FilmDB> {
 
     private async onLoadingPageState(e: CustomEvent<string>): Promise<void> {
         Model.movies.removeAll();
+        console.log('detail', e.detail);
+        if (e.detail.startsWith('/film/')) {
+            await this.getMovie(e.detail);
+        } else {
+            await this.getMoviesPage(e.detail);
+        }
+    }
+
+    private async getMovie(uid: string): Promise<void> {
+        console.log('getMovie', uid);
+    }
+
+    private async getMoviesPage(path: string): Promise<void> {
         try {
-            const response = await fetch('https://filmdb.pages.dev/api' + e.detail);
+            // const response = await fetch('https://filmdb.pages.dev/api' + e.detail);
+            const response = await fetch('https://filmdb.pages.dev/api' + path);
             const moviesPageSJON: IMoviesPage = await response.json();
             const moviesPage: IMoviesPage = moviesPageJSONToMoviesPage(moviesPageSJON);
             Model.movies.addItems(moviesPage.movies);

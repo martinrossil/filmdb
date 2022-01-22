@@ -49,6 +49,7 @@ export default class NavigationMachine extends Machine<FilmDB> {
             e.preventDefault();
             if (location.pathname.toLowerCase() !== anchor.pathname) {
                 const path = anchor.pathname;
+                console.log('anchor pathname', path);
                 history.pushState(null, '', path);
                 // this.updateDocumentTitle(index);
                 this.host.dispatch('URL_CHANGED', location.pathname.toLowerCase(), false);
@@ -57,12 +58,13 @@ export default class NavigationMachine extends Machine<FilmDB> {
     }
 
     private onPoppedState(): void {
+        console.log('onPoppedState', location.pathname.toLowerCase());
         // this.updateDocumentTitle(index);
         this.host.dispatch('URL_CHANGED', location.pathname.toLowerCase(), false);
     }
 
     private onLoadComplete(): void {
-        console.log('onLoadComplete');
+        console.log('onLoadComplete', location.pathname.toLowerCase());
         this.host.dispatch('URL_CHANGED', location.pathname.toLowerCase(), false);
     }
 }
