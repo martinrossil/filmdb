@@ -2,8 +2,8 @@
 import { getMovie } from '../../Tmdb';
 
 export async function onRequest({params}): Promise<Response> {
-    const id: number = parseInt(params.id);
-    const [movie, error] = await getMovie(id);
+    const uid: number = parseInt(params.uid);
+    const [movie, error] = await getMovie(uid);
     let response = '[null, null]';
     
     if (movie) {
@@ -15,6 +15,7 @@ export async function onRequest({params}): Promise<Response> {
     return new Response(response, {
         headers: {
             'content-type': 'application/json;charset=UTF-8',
+            'Cache-Control': 'public, max-age=86400',
             'Access-Control-Allow-Origin': '*',
         }
     });
