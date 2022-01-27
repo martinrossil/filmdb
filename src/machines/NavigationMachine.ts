@@ -64,7 +64,7 @@ export default class NavigationMachine extends Machine<FilmDB> {
     }
 
     private onLoadComplete(): void {
-        console.log('onLoadComplete', location.pathname.toLowerCase());
-        this.host.dispatch('URL_CHANGED', location.pathname.toLowerCase(), false);
+        console.log('onLoadComplete', 'updateModel() ', location.pathname.toLowerCase());
+        // this.host.dispatch('URL_CHANGED', location.pathname.toLowerCase(), false);
     }
 }
