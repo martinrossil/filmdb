@@ -1,5 +1,6 @@
-import { ApplicationElement } from 'enta';
+import { ApplicationElement, IMachine } from 'enta';
 import APIMachine from './machines/APIMachine';
+import FilmDBMachine from './machines/FilmDBMachine';
 import NavigationMachine from './machines/NavigationMachine';
 import Colors from './theme/Colors';
 import AppBar from './views/AppBar';
@@ -12,15 +13,17 @@ export default class FilmDB extends ApplicationElement {
         super();
         this.style.height = '100vh';
         document.body.style.backgroundColor = Colors.BLUE_DARKEST.toString();
-        this.addElements([
+        /* this.addElements([
             new AppBar(),
             new ProvidersNavigation(),
             new MoviesList(),
             new GenresNavigation()
-        ]);
+        ]); */
     }
 
-    private navigationMachine: NavigationMachine = new NavigationMachine(this);
-    private apiMachine: APIMachine = new APIMachine(this);
+    private filmDBMachine: IMachine = new FilmDBMachine(this);
+
+    // private navigationMachine: NavigationMachine = new NavigationMachine(this);
+    // private apiMachine: APIMachine = new APIMachine(this);
 }
 customElements.define('film-db', FilmDB);
