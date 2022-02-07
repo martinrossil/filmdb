@@ -1,6 +1,5 @@
 import { IState, Machine, State } from 'enta';
 import FilmDB from '../FilmDB';
-import { getAnchorFromEventTarget } from '../RouteUtil';
 
 export default class NavigationMachine extends Machine<FilmDB> {
     public constructor(host: FilmDB) {
@@ -44,7 +43,7 @@ export default class NavigationMachine extends Machine<FilmDB> {
     }
 
     private onClickedState(e: Event) {
-        const anchor: HTMLAnchorElement | null = getAnchorFromEventTarget(e.target);
+        const anchor: HTMLAnchorElement | null = this.getAnchorFromEventTarget(e.target);
         if (anchor) {
             e.preventDefault();
             if (location.pathname.toLowerCase() !== anchor.pathname) {
@@ -52,7 +51,7 @@ export default class NavigationMachine extends Machine<FilmDB> {
                 console.log('anchor pathname', path);
                 history.pushState(null, '', path);
                 // this.updateDocumentTitle(index);
-                this.host.dispatch('URL_CHANGED', location.pathname.toLowerCase(), false);
+                this.host.dispatch('URL_CHANGED', location.pathname.toLowerCase());
             }
         }
     }
@@ -60,11 +59,23 @@ export default class NavigationMachine extends Machine<FilmDB> {
     private onPoppedState(): void {
         console.log('onPoppedState', location.pathname.toLowerCase());
         // this.updateDocumentTitle(index);
-        this.host.dispatch('URL_CHANGED', location.pathname.toLowerCase(), false);
+        this.host.dispatch('URL_CHANGED', location.pathname.toLowerCase());
     }
 
     private onLoadComplete(): void {
-        console.log('onLoadComplete', 'updateModel() ', location.pathname.toLowerCase());
-        // this.host.dispatch('URL_CHANGED', location.pathname.toLowerCase(), false);
+        console.log('onLoadComplete', location.pathname.toLowerCase());
+        this.host.dispatch('URL_CHANGED', location.pathname.toLowerCase());
+    }
+
+    private getAnchorFromEventTarget(target: EventTarget | null): HTMLAnchorElement | null {
+        if (target instanceof HTMLAnchorElement) {
+            return target;
+        }
+        if (target instanceof Document) {
+            return null;
+        }
+        const targetNode: Node = target as Node;
+        const parent: Node | null = targetNode.parentNode;
+        return this.getAnchorFromEventTarget(parent);
     }
 }
