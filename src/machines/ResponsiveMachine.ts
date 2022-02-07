@@ -1,5 +1,6 @@
 import { IState, Machine, State } from 'enta';
 import FilmDB from '../FilmDB';
+import Model from '../state/Model';
 
 export default class ResponsiveMachine extends Machine<FilmDB> {
     public constructor(host: FilmDB) {
@@ -31,7 +32,7 @@ export default class ResponsiveMachine extends Machine<FilmDB> {
             this._mobile.addTransition('tablet', this.tablet);
             this._mobile.addTransition('laptop', this.laptop);
             this._mobile.addTransition('desktop', this.desktop);
-            this._mobile.on = this.host.mobile.bind(this.host);
+            this._mobile.on = () => { Model.device.value = 'Mobile'; };
         }
         return this._mobile;
     }
@@ -43,7 +44,7 @@ export default class ResponsiveMachine extends Machine<FilmDB> {
             this._tablet.addTransition('mobile', this.mobile);
             this._tablet.addTransition('laptop', this.laptop);
             this._tablet.addTransition('desktop', this.desktop);
-            this._tablet.on = this.host.tablet.bind(this.host);
+            this._tablet.on = () => { Model.device.value = 'Tablet'; };
         }
         return this._tablet;
     }
@@ -55,7 +56,7 @@ export default class ResponsiveMachine extends Machine<FilmDB> {
             this._laptop.addTransition('mobile', this.mobile);
             this._laptop.addTransition('tablet', this.tablet);
             this._laptop.addTransition('desktop', this.desktop);
-            this._laptop.on = this.host.laptop.bind(this.host);
+            this._laptop.on = () => { Model.device.value = 'Laptop'; };
         }
         return this._laptop;
     }
@@ -67,7 +68,7 @@ export default class ResponsiveMachine extends Machine<FilmDB> {
             this._desktop.addTransition('mobile', this.mobile);
             this._desktop.addTransition('tablet', this.tablet);
             this._desktop.addTransition('laptop', this.laptop);
-            this._desktop.on = this.host.desktop.bind(this.host);
+            this._desktop.on = () => { Model.device.value = 'Desktop' };
         }
         return this._desktop;
     }
