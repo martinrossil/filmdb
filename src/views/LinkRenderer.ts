@@ -17,7 +17,7 @@ export default class LinkRenderer extends DataRenderer<ILink> implements IMouseT
     }
 
     public hover(): void {
-        this.backgroundColor = Colors.BLUE;
+        this.backgroundColor = Colors.BLUE_DARK;
     }
 
     public pressed(x: number, y: number): void {
