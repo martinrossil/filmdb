@@ -11,7 +11,7 @@ export default class TabletApp extends DisplayContainer {
         this.name = 'TabletApp';
         console.log('TabletApp');
         this.percentWidth = this.percentHeight = 100;
-        this.addElements([this.topBar, this.providersList, this.genresList]);
+        this.addElements([this.topBar, this.sideBar]);
     }
 
     private _topBar!: IDisplayContainer;
@@ -26,6 +26,22 @@ export default class TabletApp extends DisplayContainer {
             this._topBar.addFilter(Shadows.BOX_SHADOW_DOWN_2);
         }
         return this._topBar;
+    }
+
+    private _sideBar!: IDisplayContainer;
+    private get sideBar(): IDisplayContainer {
+        if (!this._sideBar) {
+            this._sideBar = new DisplayContainer();
+            this._sideBar.width = 72;
+            this._sideBar.top = 56;
+            this._sideBar.bottom = 0;
+            this._sideBar.right = 0;
+            this._sideBar.percentHeight = 100;
+            this._sideBar.addFilter(Shadows.BOX_SHADOW_LEFT_1);
+            this._sideBar.addFilter(Shadows.BOX_SHADOW_LEFT_2);
+            this._sideBar.backgroundColor = Colors.BLUE;
+        }
+        return this._sideBar;
     }
 
     private _providersList!: IDataContainer<ILink>
