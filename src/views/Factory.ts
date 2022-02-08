@@ -1,5 +1,4 @@
-import DesktopApp from './desktop/DestopApp';
-import LaptopApp from './laptop/LaptopApp';
+import ComputerApp from './computer/ComputerApp';
 import MobileApp from './mobile/MobileApp';
 import TabletApp from './tablet/TabletApp';
 
@@ -20,19 +19,11 @@ export default class Factory {
         return this._tabletApp;
     }
 
-    private static _laptopApp: LaptopApp;
-    public static get laptopApp(): LaptopApp {
-        if (!this._laptopApp) {
-            this._laptopApp = new LaptopApp();
+    private static _computerApp: ComputerApp;
+    public static get computerApp(): ComputerApp {
+        if (!this._computerApp) {
+            this._computerApp = new ComputerApp();
         }
-        return this._laptopApp;
-    }
-
-    private static _desktopApp: DesktopApp;
-    public static get desktopApp(): DesktopApp {
-        if (!this._desktopApp) {
-            this._desktopApp = new DesktopApp();
-        }
-        return this._desktopApp;
+        return this._computerApp;
     }
 }

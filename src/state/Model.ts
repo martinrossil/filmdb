@@ -2,17 +2,8 @@ import { ArrayCollection, IArrayCollection } from 'enta';
 import IMovie from '../dto/IMovie';
 import ILink from '../vo/ILink';
 import Link from '../vo/Link';
-import OberservableString from './ObservableString';
 
 export default class Model {
-    private static _device: OberservableString;
-    public static get device(): OberservableString {
-        if (!this._device) {
-            this._device = new OberservableString();
-        }
-        return this._device;
-    }
-
     private static _movies: IArrayCollection<IMovie>;
     public static get movies(): IArrayCollection<IMovie> {
         if (!this._movies) {

@@ -1,6 +1,6 @@
 import { IState, Machine, State } from 'enta';
 import FilmDB from '../FilmDB';
-import Model from '../state/Model';
+import Factory from '../views/Factory';
 
 export default class ResponsiveMachine extends Machine<FilmDB> {
     public constructor(host: FilmDB) {
@@ -18,9 +18,8 @@ export default class ResponsiveMachine extends Machine<FilmDB> {
             this._loadComplete = new State('LoadComplete');
             this._loadComplete.addTransition('mobile', this.mobile);
             this._loadComplete.addTransition('tablet', this.tablet);
-            this._loadComplete.addTransition('laptop', this.laptop);
-            this._loadComplete.addTransition('desktop', this.desktop);
-            this._loadComplete.on = this.onLoadComplete.bind(this);
+            this._loadComplete.addTransition('computer', this.computer);
+            this._loadComplete.on = this.onLoadComplete;
         }
         return this._loadComplete;
     }
@@ -30,9 +29,8 @@ export default class ResponsiveMachine extends Machine<FilmDB> {
         if (!this._mobile) {
             this._mobile = new State('Mobile');
             this._mobile.addTransition('tablet', this.tablet);
-            this._mobile.addTransition('laptop', this.laptop);
-            this._mobile.addTransition('desktop', this.desktop);
-            this._mobile.on = () => { Model.device.value = 'Mobile'; };
+            this._mobile.addTransition('computer', this.computer);
+            this._mobile.on = this.onMobile;
         }
         return this._mobile;
     }
@@ -42,35 +40,39 @@ export default class ResponsiveMachine extends Machine<FilmDB> {
         if (!this._tablet) {
             this._tablet = new State('Tablet');
             this._tablet.addTransition('mobile', this.mobile);
-            this._tablet.addTransition('laptop', this.laptop);
-            this._tablet.addTransition('desktop', this.desktop);
-            this._tablet.on = () => { Model.device.value = 'Tablet'; };
+            this._tablet.addTransition('computer', this.computer);
+            this._tablet.on = this.onTablet;
         }
         return this._tablet;
     }
 
-    private _laptop!: IState;
-    private get laptop(): IState {
-        if (!this._laptop) {
-            this._laptop = new State('Laptop');
-            this._laptop.addTransition('mobile', this.mobile);
-            this._laptop.addTransition('tablet', this.tablet);
-            this._laptop.addTransition('desktop', this.desktop);
-            this._laptop.on = () => { Model.device.value = 'Laptop'; };
+    private _computer!: IState;
+    private get computer(): IState {
+        if (!this._computer) {
+            this._computer = new State('Computer');
+            this._computer.addTransition('mobile', this.mobile);
+            this._computer.addTransition('tablet', this.tablet);
+            this._computer.on = this.onComputer;
         }
-        return this._laptop;
+        return this._computer;
     }
 
-    private _desktop!: IState;
-    private get desktop(): IState {
-        if (!this._desktop) {
-            this._desktop = new State('Desktop');
-            this._desktop.addTransition('mobile', this.mobile);
-            this._desktop.addTransition('tablet', this.tablet);
-            this._desktop.addTransition('laptop', this.laptop);
-            this._desktop.on = () => { Model.device.value = 'Desktop' };
-        }
-        return this._desktop;
+    private onComputer(): void {
+        console.log('onComputer', this);
+        this.host.removeElements();
+        this.host.addElement(Factory.computerApp);
+    }
+
+    private onTablet(): void {
+        console.log('onTablet', this);
+        this.host.removeElements();
+        this.host.addElement(Factory.tabletApp);
+    }
+
+    private onMobile(): void {
+        console.log('onMobile', this);
+        this.host.removeElements();
+        this.host.addElement(Factory.mobileApp);
     }
 
     private onLoadComplete(): void {
@@ -79,11 +81,8 @@ export default class ResponsiveMachine extends Machine<FilmDB> {
 
     private getEventTypeFromWidth(): string {
         const width = Math.max(window.innerWidth, document.documentElement.clientWidth);
-        if (width > 1366) {
-            return 'desktop';
-        }
         if (width > 1024) {
-            return 'laptop';
+            return 'computer';
         }
         if (width >= 768) {
             return 'tablet';
