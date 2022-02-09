@@ -1,7 +1,7 @@
 import { ColumnLayout, DataContainer } from 'enta';
 import IMovie from '../dto/IMovie';
 import Model from '../state/Model';
-import MovieItemRenderer from './MovieItemRenderer';
+import MovieItemRenderer from '../components/MovieItemRenderer';
 
 export default class MoviesList extends DataContainer<IMovie> {
     public constructor() {

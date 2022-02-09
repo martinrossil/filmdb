@@ -3,7 +3,7 @@ import Model from '../../state/Model';
 import Colors from '../../theme/Colors';
 import Shadows from '../../theme/Shadows';
 import ILink from '../../vo/ILink';
-import LinkRenderer from '../LinkRenderer';
+import LinkRenderer from '../../components/LinkRenderer';
 
 export default class TabletApp extends DisplayContainer {
     public constructor() {
