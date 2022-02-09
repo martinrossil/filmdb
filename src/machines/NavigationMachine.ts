@@ -16,7 +16,7 @@ export default class NavigationMachine extends Machine<FilmDB> {
     private get clickedState(): IState {
         if (!this._clickedState) {
             this._clickedState = new State('ClickedState');
-            this._clickedState.on = this.onClickedState.bind(this);
+            this._clickedState.on = this.onClickedState;
             this._clickedState.next = this.initial;
         }
         return this._clickedState;
@@ -26,7 +26,7 @@ export default class NavigationMachine extends Machine<FilmDB> {
     private get poppedState(): IState {
         if (!this._poppedState) {
             this._poppedState = new State('Popped');
-            this._poppedState.on = this.onPoppedState.bind(this);
+            this._poppedState.on = this.onPoppedState;
             this._poppedState.next = this.initial;
         }
         return this._poppedState;
@@ -36,7 +36,7 @@ export default class NavigationMachine extends Machine<FilmDB> {
     private get loadComplete(): IState {
         if (!this._loadComplete) {
             this._loadComplete = new State('LoadComplete');
-            this._loadComplete.on = this.onLoadComplete.bind(this);
+            this._loadComplete.on = this.onLoadComplete;
             this._loadComplete.next = this.initial;
         }
         return this._loadComplete;
