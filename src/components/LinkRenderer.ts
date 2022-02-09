@@ -1,5 +1,5 @@
 import { DataRenderer, ILabelElement, ILinkContainer, IMouseTouch, LinkContainer, MouseTouchMachine } from 'enta';
-import SerifLabel from '../components/SerifLabel';
+import SerifLabel from './SerifLabel';
 import Colors from '../theme/Colors';
 import ILink from '../vo/ILink';
 
@@ -26,13 +26,19 @@ export default class LinkRenderer extends DataRenderer<ILink> implements IMouseT
 
     public clicked(): void {
         // overriden
+        console.log('clicked', this.data);
     }
 
     protected dataChanged(): void {
         if (this.data) {
             this.nameLabel.text = this.data.label;
             this.linkContainer.href = this.data.href;
+            this.data.addEventListener('changed', this.dataPropertyChanged.bind(this));
         }
+    }
+
+    private dataPropertyChanged(): void {
+        console.log('dataPropertyChanged', this.data);
     }
 
     private mouseTouchMachine: MouseTouchMachine = new MouseTouchMachine(this);

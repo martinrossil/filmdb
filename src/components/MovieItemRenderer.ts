@@ -1,5 +1,5 @@
 import { DataRenderer, ILabelElement, ILinkContainer, LinkContainer, VerticalLayout } from 'enta';
-import SerifLabel from '../components/SerifLabel';
+import SerifLabel from './SerifLabel';
 import Colors from '../theme/Colors';
 import BackdropImage from './BackdropImage';
 import IMovie from '../dto/IMovie';
