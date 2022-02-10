@@ -6,15 +6,12 @@ export default class Link extends EventDispatcher implements ILink {
         super();
         this.label = label;
         this.slug = slug;
-        this.defaultHref = href;
         this.href = href;
     }
 
     public label: string;
 
     public slug: string;
-
-    public defaultHref: string;
 
     private _href = '';
     public set href(value: string) {
