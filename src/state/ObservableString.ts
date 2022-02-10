@@ -12,12 +12,15 @@ export default class OberservableString extends EventDispatcher {
     public set value(value: string) {
         if (this._value !== value) {
             this._value = value;
-            console.log('device', value);
-            this.dispatchEvent(new CustomEvent('changed', { detail: value }));
+            this.notify();
         }
     }
 
     public get value(): string {
         return this._value;
+    }
+
+    private notify(): void {
+        this.dispatchEvent(new CustomEvent('changed', { detail: this.value }));
     }
 }
