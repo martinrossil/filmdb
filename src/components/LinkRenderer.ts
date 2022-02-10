@@ -13,7 +13,7 @@ export default class LinkRenderer extends DataRenderer<ILink> implements IMouseT
     }
 
     public initial(): void {
-        this.backgroundColor = null;
+        this.updateProperties();
     }
 
     public hover(): void {
@@ -25,20 +25,26 @@ export default class LinkRenderer extends DataRenderer<ILink> implements IMouseT
     }
 
     public clicked(): void {
-        // overriden
-        console.log('clicked', this.data);
+        // override
+    }
+
+    private updateProperties(): void {
+        if (this.data) {
+            if (this.data.selected) {
+                this.backgroundColor = Colors.STAR_ORANGE;
+            } else {
+                this.backgroundColor = null;
+            }
+            this.linkContainer.href = this.data.href;
+        }
     }
 
     protected dataChanged(): void {
         if (this.data) {
             this.nameLabel.text = this.data.label;
             this.linkContainer.href = this.data.href;
-            this.data.addEventListener('changed', this.dataPropertyChanged.bind(this));
+            this.data.addEventListener('changed', this.updateProperties.bind(this));
         }
-    }
-
-    private dataPropertyChanged(): void {
-        console.log('dataPropertyChanged', this.data);
     }
 
     private mouseTouchMachine: MouseTouchMachine = new MouseTouchMachine(this);
