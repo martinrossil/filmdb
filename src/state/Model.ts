@@ -2,49 +2,15 @@ import { ArrayCollection, IArrayCollection } from 'enta';
 import IMovie from '../dto/IMovie';
 import ILink from '../vo/ILink';
 import Link from '../vo/Link';
-import OberservableString from './ObservableString';
-import OberservableUint from './ObservableUint';
+import ObservableString from './ObservableString';
+import ObservableUint from './ObservableUint';
 
 export default class Model {
-    private static _selectedProviders: OberservableString;
-    public static get selectedProviders(): OberservableString {
-        if (!this._selectedProviders) {
-            this._selectedProviders = new OberservableString();
-        }
-        return this._selectedProviders;
-    }
-
-    private static _selectedGenres: OberservableString;
-    public static get selectedGenres(): OberservableString {
-        if (!this._selectedGenres) {
-            this._selectedGenres = new OberservableString();
-        }
-        return this._selectedGenres;
-    }
-
-    private static _selectedSort: OberservableString;
-    public static get selectedSort(): OberservableString {
-        if (!this._selectedSort) {
-            this._selectedSort = new OberservableString();
-        }
-        return this._selectedSort;
-    }
-
-    private static _selectedMoviePage: OberservableUint;
-    public static get selectedMoviePage(): OberservableUint {
-        if (!this._selectedMoviePage) {
-            this._selectedMoviePage = new OberservableUint();
-        }
-        return this._selectedMoviePage;
-    }
-
-    private static _movies: IArrayCollection<IMovie>;
-    public static get movies(): IArrayCollection<IMovie> {
-        if (!this._movies) {
-            this._movies = new ArrayCollection();
-        }
-        return this._movies;
-    }
+    public static selectedProviders = new ObservableString();
+    public static selectedGenres = new ObservableString();
+    public static selectedSort = new ObservableString();
+    public static selectedMoviePage = new ObservableUint();
+    public static movies: IArrayCollection<IMovie> = new ArrayCollection();
 
     private static _genres: IArrayCollection<ILink>;
     public static get genres(): IArrayCollection<ILink> {
