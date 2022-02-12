@@ -7,21 +7,21 @@ import { moviesPageJSONToMoviesPage } from '../dto/JSONAdapter';
 export default class APIMachine extends Machine<FilmDB> {
     public constructor(host: FilmDB) {
         super(host);
-        this.initial.addTransition('URL_CHANGED', this.loadingPageState);
+        this.initial.addTransition('URL_CHANGED', this.urlChanged);
         host.addEventListener('URL_CHANGED', this.send);
     }
 
-    private _loadingPageState!: IState;
-    private get loadingPageState(): IState {
-        if (!this._loadingPageState) {
-            this._loadingPageState = new State('LoadingPageState');
-            this._loadingPageState.on = this.onLoadingPageState.bind(this) as unknown as IEventListener;
-            this._loadingPageState.next = this.initial;
+    private _urlChanged!: IState;
+    private get urlChanged(): IState {
+        if (!this._urlChanged) {
+            this._urlChanged = new State('UrlChanged');
+            this._urlChanged.on = this.onUrlChanged as unknown as IEventListener;
+            this._urlChanged.next = this.initial;
         }
-        return this._loadingPageState;
+        return this._urlChanged;
     }
 
-    private async onLoadingPageState(e: CustomEvent<string>): Promise<void> {
+    private async onUrlChanged(e: CustomEvent<string>): Promise<void> {
         Model.movies.removeAll();
         console.log('detail', e.detail);
         if (e.detail.startsWith('/film/')) {
