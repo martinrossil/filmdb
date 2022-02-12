@@ -7,9 +7,9 @@ export default class NavigationMachine extends Machine<FilmDB> {
         this.initial.addTransition('load', this.loadComplete);
         this.initial.addTransition('click', this.clickedState);
         this.initial.addTransition('popstate', this.poppedState);
+        window.addEventListener('load', this.send, { once: true });
         window.addEventListener('click', this.send);
         window.addEventListener('popstate', this.send);
-        window.addEventListener('load', this.send, { once: true });
     }
 
     private _clickedState!: IState;
@@ -51,7 +51,7 @@ export default class NavigationMachine extends Machine<FilmDB> {
                 console.log('anchor pathname', path);
                 history.pushState(null, '', path);
                 // this.updateDocumentTitle(index);
-                this.host.dispatch('URL_CHANGED', location.pathname.toLowerCase());
+                this.notify('URL_CHANGED');
             }
         }
     }
@@ -59,12 +59,16 @@ export default class NavigationMachine extends Machine<FilmDB> {
     private onPoppedState(): void {
         console.log('onPoppedState', location.pathname.toLowerCase());
         // this.updateDocumentTitle(index);
-        this.host.dispatch('URL_CHANGED', location.pathname.toLowerCase());
+        this.notify('URL_CHANGED');
     }
 
     private onLoadComplete(): void {
         console.log('onLoadComplete', location.pathname.toLowerCase());
-        this.host.dispatch('URL_CHANGED', location.pathname.toLowerCase());
+        this.notify('URL_CHANGED');
+    }
+
+    private notify(type: string): void {
+        this.host.dispatch(type, location.pathname.toLowerCase());
     }
 
     private getAnchorFromEventTarget(target: EventTarget | null): HTMLAnchorElement | null {
