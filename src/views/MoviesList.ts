@@ -10,7 +10,7 @@ export default class MoviesList extends DataContainer<IMovie> {
         this.DataRendererClass = MovieItemRenderer;
         this.dataProvider = Model.movies;
         this.padding = 16;
-        this.paddingTop = 72;
+        this.paddingTop = 88;
         this.left = 192;
         this.right = 192;
         this.layout = new ColumnLayout(160, 5, 16);
