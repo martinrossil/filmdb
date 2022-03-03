@@ -4,6 +4,7 @@ import Colors from '../../theme/Colors';
 import Shadows from '../../theme/Shadows';
 import ILink from '../../vo/ILink';
 import LinkRenderer from '../../components/LinkRenderer';
+import MoviesList from '../MoviesList';
 
 export default class LaptopApp extends DisplayContainer {
     public constructor() {
@@ -11,7 +12,7 @@ export default class LaptopApp extends DisplayContainer {
         this.name = 'LaptopApp';
         console.log('LaptopApp');
         this.percentWidth = this.percentHeight = 100;
-        this.addElements([this.topBar, this.providersList, this.genresList]);
+        this.addElements([this.topBar, this.providersList, this.moviesList, this.genresList]);
     }
 
     private _topBar!: IDisplayContainer;
@@ -42,6 +43,14 @@ export default class LaptopApp extends DisplayContainer {
             this._providersList.dataProvider = Model.providers;
         }
         return this._providersList;
+    }
+
+    private _moviesList!: MoviesList;
+    private get moviesList(): MoviesList {
+        if (!this._moviesList) {
+            this._moviesList = new MoviesList();
+        }
+        return this._moviesList;
     }
 
     private _genresList!: IDataContainer<ILink>;
