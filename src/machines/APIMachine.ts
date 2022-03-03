@@ -22,11 +22,11 @@ export default class APIMachine extends Machine<FilmDB> {
     }
 
     private async onUrlChanged(e: CustomEvent<string>): Promise<void> {
-        Model.movies.removeAll();
         console.log('detail', e.detail);
         if (e.detail.startsWith('/film/')) {
             await this.getMovie(e.detail);
         } else {
+            Model.movies.removeAll();
             await this.getMoviesPage(e.detail);
         }
     }
