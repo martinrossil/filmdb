@@ -1,0 +1,27 @@
+type Movie {
+    genres: [Genre!] @relation
+    title: String!
+    tmdb_id: Int! @unique
+    cast: [Cast!] @relation
+}
+
+type Genre {
+    tmdb_id: Int! @unique
+    movies: [Movie!] @relation
+    name: String! @unique
+}
+
+type Person {
+    tmdb_id: Int! @unique
+    name: String!
+    birthday: Date
+    cast: [Cast!] @relation
+}
+
+type Cast {
+    character: String!
+    credit_id: String! @unique
+    order: Int!
+    person: Person!
+    movie: Movie!
+}
