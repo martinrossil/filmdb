@@ -1,4 +1,4 @@
-import { IState, Machine, State } from 'enta';
+import { IState, Machine, State } from 'fuix';
 import FilmDB from '../FilmDB';
 import Factory from '../views/Factory';
 
@@ -59,20 +59,14 @@ export default class ResponsiveMachine extends Machine<FilmDB> {
 
     private onComputer(): void {
         console.log('onComputer', this);
-        this.host.removeElements();
-        this.host.addElement(Factory.computerApp);
     }
 
     private onTablet(): void {
         console.log('onTablet', this);
-        this.host.removeElements();
-        this.host.addElement(Factory.tabletApp);
     }
 
     private onMobile(): void {
         console.log('onMobile', this);
-        this.host.removeElements();
-        this.host.addElement(Factory.mobileApp);
     }
 
     private onLoadComplete(): void {
