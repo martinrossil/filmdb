@@ -1,4 +1,4 @@
-import { IEventDispatcher } from 'enta';
+import { IEventDispatcher } from 'fuix';
 
 export default interface ILink extends IEventDispatcher {
     href: string;

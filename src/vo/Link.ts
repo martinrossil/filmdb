@@ -1,4 +1,4 @@
-import { EventDispatcher } from 'enta';
+import { EventDispatcher } from 'fuix';
 import ILink from './ILink';
 
 export default class Link extends EventDispatcher implements ILink {
@@ -40,6 +40,6 @@ export default class Link extends EventDispatcher implements ILink {
     }
 
     private notifyChanged(): void {
-        this.dispatch('changed');
+        this.dispatchCustomEvent(new CustomEvent('changed'));
     }
 }
