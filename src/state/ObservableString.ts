@@ -1,9 +1,8 @@
-import { EventDispatcher } from 'enta';
+import { EventDispatcher } from 'fuix';
 
 export default class OberservableString extends EventDispatcher {
     public constructor(value = '') {
         super();
-        this.name = 'OberservableString';
         this._value = value;
     }
 
@@ -21,6 +20,6 @@ export default class OberservableString extends EventDispatcher {
     }
 
     private notify(): void {
-        this.dispatchEvent(new CustomEvent('changed', { detail: this.value }));
+        this.dispatchCustomEvent(new CustomEvent('changed', { detail: this.value }));
     }
 }

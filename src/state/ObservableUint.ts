@@ -1,9 +1,8 @@
-import { EventDispatcher } from 'enta';
+import { EventDispatcher } from 'fuix';
 
 export default class OberservableUint extends EventDispatcher {
     public constructor(value = 0) {
         super();
-        this.name = 'OberservableUint';
         this._value = value;
     }
 
@@ -36,6 +35,6 @@ export default class OberservableUint extends EventDispatcher {
     }
 
     private notify(): void {
-        this.dispatchEvent(new CustomEvent('changed', { detail: this.value }));
+        this.dispatchCustomEvent(new CustomEvent('changed', { detail: this.value }));
     }
 }
