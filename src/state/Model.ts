@@ -1,36 +1,30 @@
-import { ArrayCollection, IArrayCollection } from 'enta';
+import { ArrayCollection, IArrayCollection } from 'fuix';
 import IMovie from '../dto/IMovie';
 import ILink from '../vo/ILink';
 import Link from '../vo/Link';
-import ObservableString from './ObservableString';
-import ObservableUint from './ObservableUint';
 
 export default class Model {
-    public static selectedProviders = new ObservableString();
-    public static selectedGenres = new ObservableString();
-    public static selectedSort = new ObservableString();
-    public static selectedMoviePage = new ObservableUint();
     public static movies: IArrayCollection<IMovie> = new ArrayCollection();
 
     private static _genres: IArrayCollection<ILink>;
     public static get genres(): IArrayCollection<ILink> {
         if (!this._genres) {
             const genres: Array<ILink> = [
-                new Link('Action', 'b', '/a/b/a/1'),
-                new Link('Animation', 'c', '/a/c/a/1'),
-                new Link('Dokumentar', 'd', '/a/d/a/1'),
-                new Link('Drama', 'e', '/a/e/a/1'),
-                new Link('Eventyr', 'f', '/a/f/a/1'),
-                new Link('Familie', 'g', '/a/g/a/1'),
-                new Link('Fantasy', 'h', '/a/h/a/1'),
-                new Link('Gyser', 'i', '/a/i/a/1'),
-                new Link('Historie', 'j', '/a/j/a/1'),
-                new Link('Komedie', 'k', '/a/k/a/1'),
-                new Link('Krig', 'l', '/a/l/a/1'),
-                new Link('Krimi', 'm', '/a/m/a/1'),
-                new Link('Musik', 'n', '/a/n/a/1'),
-                new Link('Mysterie', 'o', '/a/o/a/1'),
-                new Link('Romantik', 'p', '/a/p/a/1')
+                new Link('Action', 'action', '/alle/action'),
+                new Link('Animation', 'animation', '/alle/animation'),
+                new Link('Dokumentar', 'dokumentar', '/alle/dokumentar'),
+                new Link('Drama', 'drama', '/alle/drama'),
+                new Link('Eventyr', 'eventyr', '/alle/eventyr'),
+                new Link('Familie', 'familie', '/alle/familie'),
+                new Link('Gyser', 'gyser', '/alle/gyser'),
+                new Link('Historie', 'historie', '/alle/historie'),
+                new Link('Komedie', 'komedie', '/alle/komedie'),
+                new Link('Krig', 'krig', '/alle/krig'),
+                new Link('Krimi', 'krimi', '/alle/krimi'),
+                new Link('Musik', 'musik', '/alle/musik'),
+                new Link('Mysterie', 'mysterie', '/alle/mysterie'),
+                new Link('Romantik', 'romantik', '/alle/romantik'),
+                new Link('Sci-Fi', 'sci-fi', '/alle/sci-fi')
             ];
             this._genres = new ArrayCollection(genres);
         }
@@ -41,21 +35,21 @@ export default class Model {
     public static get providers(): IArrayCollection<ILink> {
         if (!this._providers) {
             const providers: Array<ILink> = [
-                new Link('Amazon Prime', 'b', '/b/a/a/1'),
-                new Link('Apple Itunes', 'c', '/c/a/a/1'),
-                new Link('Apple TV+', 'd', '/d/a/a/1'),
-                new Link('Blockbuster', 'e', '/e/a/a/1'),
-                new Link('C More', 'f', '/f/a/a/1'),
-                new Link('Dansk Filmskat', 'g', '/g/a/a/1'),
-                new Link('Disney+', 'h', '/h/a/a/1'),
-                new Link('DR TV', 'i', '/i/a/a/1'),
-                new Link('Filmstriben', 'j', '/j/a/a/1'),
-                new Link('HBO Max', 'k', '/k/a/a/1'),
-                new Link('Netflix', 'l', '/l/a/a/1'),
-                new Link('Paramount+', 'm', '/m/a/a/1'),
-                new Link('SF Anytime', 'n', '/n/a/a/1'),
-                new Link('TV2 Play', 'o', '/o/a/a/1'),
-                new Link('Viaplay', 'p', '/p/a/a/1')
+                new Link('Amazon Prime', 'amazon-prime', '/amazon-prime'),
+                new Link('Apple Itunes', 'apple-itunes', '/apple-itunes'),
+                new Link('Apple TV+', 'apple-tv-plus', '/apple-tv-plus'),
+                new Link('Blockbuster', 'blockbuster', '/blockbuster'),
+                new Link('C More', 'c-more', '/c-more'),
+                new Link('Dansk Filmskat', 'dansk-filmskat', '/dansk-filmskat'),
+                new Link('Disney+', 'disney-plus', '/disney-plus'),
+                new Link('DR TV', 'dr-tv', '/dr-tv'),
+                new Link('Filmstriben', 'filmstriben', '/filmstriben'),
+                new Link('HBO Max', 'hbo-max', '/hbo-max'),
+                new Link('Netflix', 'netflix', '/netflix'),
+                new Link('Paramount+', 'paramount-plus', '/paramount-plus'),
+                new Link('SF Anytime', 'sf-anytime', '/sf-anytime'),
+                new Link('TV2 Play', 'tv2-play', '/tv2-play'),
+                new Link('Viaplay', 'viaplay', '/viaplay')
             ];
             this._providers = new ArrayCollection(providers);
         }
