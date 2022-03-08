@@ -1,14 +1,12 @@
-import { ApplicationElement } from 'enta';
-import FilmDBMachines from './machines/FilmDBMachines';
+import { Application } from 'fuix';
+import ResponsiveMachine from './machines/ResponsiveMachine';
 import Colors from './theme/Colors';
-
-export default class FilmDB extends ApplicationElement {
+export default class FilmDB extends Application {
     public constructor() {
         super();
         this.style.height = '100vh';
-        document.body.style.backgroundColor = Colors.BLUE_DARKEST.toString();
+        this.bodyBackgroundColor = Colors.BLUE_DARKEST;
+        new ResponsiveMachine(this);
     }
-
-    private machines = new FilmDBMachines(this);
 }
 customElements.define('film-db', FilmDB);
