@@ -2,3 +2,4 @@ node_modules/
 development/
 public/
 src/Config.ts
+coverage/
