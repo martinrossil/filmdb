@@ -52,7 +52,7 @@ function getOutput(year) {
 
 function getCompiler(year) {
     const ecma = 'ECMASCRIPT_' + year;
-    return compiler({ language_in: 'ECMASCRIPT_NEXT', compilation_level: 'ADVANCED', language_out: ecma })
+    return compiler({ language_in: 'ECMASCRIPT_2020', compilation_level: 'ADVANCED', language_out: ecma })
 }
 
 function getES5() {
@@ -63,7 +63,7 @@ function getES5() {
         format: 'iife',
         plugins: [
             compiler({
-                language_in: 'ECMASCRIPT_NEXT',
+                language_in: 'ECMASCRIPT_2020',
                 compilation_level: 'ADVANCED',
                 language_out: 'ECMASCRIPT5'
             })
