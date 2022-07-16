@@ -40,7 +40,6 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
-    "live-server": "^1.1.0",
     "rollup": "^2.41.1",
     "rollup-plugin-clear": "^2.0.7",
     "rollup-plugin-copy": "^3.4.0",
@@ -52,6 +51,6 @@
     "typescript": "^4.6.3"
   },
   "dependencies": {
-    "fuix": "^0.1.4"
+    "fuix": "^0.1.14"
   }
 }
