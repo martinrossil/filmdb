@@ -1,6 +1,7 @@
 import { Container } from 'fuix';
+import IBottomNavigation from './IBottomNavigation';
 
-export default class BottomNavigation extends Container {
+export default class BottomNavigation extends Container implements IBottomNavigation {
     public constructor() {
         super();
         this.backgroundColor = 'white';
