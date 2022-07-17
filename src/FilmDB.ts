@@ -9,7 +9,8 @@ export default class FilmDB extends Application implements IFilmDB {
     public constructor() {
         super();
         this.bodyBackgroundColor = '#F4F5F7';
-        this.addComponents([this.topBar, new BottomNavigation()]);
+        this.bodyFontFamily = 'Inter';
+        this.addComponents([this.topBar, this.bottomNavigation]);
     }
 
     #topBar: ITopBar = new TopBar();
