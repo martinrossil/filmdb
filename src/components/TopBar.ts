@@ -1,6 +1,7 @@
 import { Container } from 'fuix';
+import ITopBar from './ITopBar';
 
-export default class TopBar extends Container {
+export default class TopBar extends Container implements ITopBar {
     public constructor() {
         super();
         this.backgroundColor = 'white';
