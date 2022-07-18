@@ -28,6 +28,12 @@ export default [{
     ],
     output: [getOutput(2019), getOutput(2018), getOutput(2017), getOutput(2016), getOutput(2015)]
 }, {
+    /**
+     * private properties are not supported before tslib is updated
+     * I think I'm gonna drop IE11 support :)
+     * Create issue about this
+     * EventTarget is not supported in IE aswell
+     */
     input: './src/FilmDB.ts',
     onwarn: function() {},
     plugins: [

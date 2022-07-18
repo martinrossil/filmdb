@@ -1,9 +1,13 @@
 import { esbuildPlugin } from '@web/dev-server-esbuild';
 import { defaultReporter, summaryReporter } from '@web/test-runner';
+import { playwrightLauncher } from '@web/test-runner-playwright';
 
 export default {
     files: ['src/**/*.test.ts'],
     plugins: [esbuildPlugin({ ts: true })],
+    browsers: [
+        playwrightLauncher({ product: 'chromium' }),
+    ],
     reporters: [
         summaryReporter(),
         defaultReporter({
