@@ -3,3 +3,4 @@ development/
 public/
 src/Config.ts
 coverage/
+package-lock.json
