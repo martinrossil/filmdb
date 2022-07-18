@@ -1,6 +1,5 @@
 node_modules/
-development/
 public/
 src/Config.ts
 coverage/
-package-lock.json
+development/esnext.js
