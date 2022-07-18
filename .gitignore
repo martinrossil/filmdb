@@ -3,3 +3,4 @@ public/
 src/Config.ts
 coverage/
 development/esnext.js
+package-lock.json
