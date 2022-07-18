@@ -113,6 +113,8 @@ function template({ files }) {
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
     <meta name="Description" content="Film DB, Danmarks største film database.">
     <meta name="theme-color" content="#036">
+    <link rel="preload" href="eurostile-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="eurostile-bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="inter-regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="inter-medium.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="inter-semi-bold.woff2" as="font" type="font/woff2" crossorigin>
@@ -123,6 +125,8 @@ function template({ files }) {
     <link rel="manifest" href="manifest.webmanifest">
     <title>Film DB, Danmarks største film database.</title>
     <style>
+      @font-face { font-family: 'Eurostile Extd';font-weight: 400;font-display: block;src: url('eurostile-regular.woff2') format('woff2'); }
+      @font-face { font-family: 'Eurostile Extd';font-weight: 700;font-display: block;src: url('eurostile-bold.woff2') format('woff2'); }
       @font-face { font-family: 'Inter';font-weight: 400;font-display: block;src: url('inter-regular.woff2') format('woff2'); }
       @font-face { font-family: 'Inter';font-weight: 500;font-display: block;src: url('inter-medium.woff2') format('woff2'); }
       @font-face { font-family: 'Inter';font-weight: 600;font-display: block;src: url('inter-semi-bold.woff2') format('woff2'); }
