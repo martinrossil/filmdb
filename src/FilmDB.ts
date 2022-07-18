@@ -34,7 +34,6 @@ export default class FilmDB extends Application implements IFilmDB {
             this.#eurostileParagraph.text = 'Hæøå ÆØÅ H';
             this.#eurostileParagraph.fontFamily = 'Eurostile Extd';
             this.#eurostileParagraph.fontSize = 64;
-            this.#eurostileParagraph.fontWeight = 700;
             this.#eurostileParagraph.lineHeight = 0.68;
         }
         return this.#eurostileParagraph;
