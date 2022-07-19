@@ -3,7 +3,7 @@ import { defaultReporter, summaryReporter } from '@web/test-runner';
 import { playwrightLauncher } from '@web/test-runner-playwright';
 
 export default {
-    files: ['src/**/*.test.ts'],
+    files: ['tests/**/*.test.ts'],
     plugins: [esbuildPlugin({ ts: true })],
     browsers: [
         playwrightLauncher({ product: 'chromium' }),
@@ -12,8 +12,8 @@ export default {
         summaryReporter(),
         defaultReporter({
             reportTestResults: true,
-            reportTestProgress: true
-        })
+            reportTestProgress: true,
+        }),
     ],
     coverageConfig: {
         report: true,
@@ -22,7 +22,7 @@ export default {
             statements: 100,
             branches: 100,
             functions: 100,
-            lines: 100
-        }
-    }
+            lines: 100,
+        },
+    },
 };
