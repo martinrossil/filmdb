@@ -8,9 +8,9 @@
     "dev": "rollup -c rollup.development.js --watch",
     "lint": "eslint src/**/*",
     "build": "rollup -c rollup.production.js",
-    "test": "web-test-runner \"src/**/*.test.ts\" --node-resolve",
-    "test:coverage": "web-test-runner \"src/**/*.test.ts\" --node-resolve --coverage",
-    "test:watch": "web-test-runner \"src/**/*.test.ts\" --node-resolve --watch"
+    "test": "web-test-runner --node-resolve",
+    "test:coverage": "web-test-runner --node-resolve --coverage",
+    "test:watch": "web-test-runner --node-resolve --watch"
   },
   "repository": {
     "type": "git",
