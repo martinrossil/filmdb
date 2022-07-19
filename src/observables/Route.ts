@@ -1,11 +1,13 @@
-export default class ObservableRoute extends EventTarget {
-    public static ROUTE_CHANGED = 'ROUTE_CHANGED';
+import IRoute from './IRoute';
 
-    static #singleton: ObservableRoute;
+export default class Route extends EventTarget implements IRoute {
+    public static CHANGED = 'CHANGED';
 
-    public static get singleton(): ObservableRoute {
+    static #singleton: IRoute;
+
+    public static get singleton(): IRoute {
         if (!this.#singleton) {
-            this.#singleton = new ObservableRoute();
+            this.#singleton = new Route();
         }
         return this.#singleton;
     }
@@ -41,7 +43,7 @@ export default class ObservableRoute extends EventTarget {
     }
 
     #notifyRouteChanged(): void {
-        this.dispatchEvent(new CustomEvent(ObservableRoute.ROUTE_CHANGED, { detail: this.#route }));
+        this.dispatchEvent(new CustomEvent(Route.CHANGED, { detail: this.#route }));
     }
 
     #getAnchorFromEventTarget(target: EventTarget | null): HTMLAnchorElement | null {
