@@ -1,4 +1,5 @@
 import { Devices } from '../types/Devices';
+import { Orientations } from '../types/Orientations';
 import IDevice from './IDevice';
 
 export default class Device extends EventTarget implements IDevice {
@@ -16,13 +17,16 @@ export default class Device extends EventTarget implements IDevice {
     public constructor() {
         super();
         this.#device = this.#getDevice();
+        this.#orientation = this.#getOrientation();
         window.addEventListener('resize', this.#resize.bind(this));
     }
 
     #resize(): void {
         const device = this.#getDevice();
-        if (this.#device !== device) {
+        const orientation = this.#getOrientation();
+        if (this.#device !== device || this.#orientation !== orientation) {
             this.#device = device;
+            this.#orientation = orientation;
             this.dispatchEvent(new CustomEvent(Device.CHANGED, { detail: this.#device }));
         }
     }
@@ -33,16 +37,36 @@ export default class Device extends EventTarget implements IDevice {
         return this.#device;
     }
 
+    #orientation: Orientations;
+
+    public get orientation(): Orientations {
+        return this.#orientation;
+    }
+
     #getDevice(): Devices {
+        const orientation = this.#getOrientation();
         if (window.innerWidth <= 600) {
             return 'mobile';
         }
-        if (window.innerWidth <= 1024) {
-            return 'tablet';
+        if (window.innerWidth <= 960) {
+            if (orientation === 'portrait') {
+                return 'tablet';
+            }
+            return 'mobile';
         }
-        if (window.innerWidth <= 1440) {
+        if (window.innerWidth <= 1280) {
+            if (orientation === 'landscape') {
+                return 'tablet';
+            }
             return 'laptop';
         }
         return 'desktop';
+    }
+
+    #getOrientation(): Orientations {
+        if (window.innerWidth <= window.innerHeight) {
+            return 'portrait';
+        }
+        return 'landscape';
     }
 }
