@@ -8,11 +8,11 @@ export default class MobileMoviesList extends DataContainer<IMoviePreview> imple
     public constructor() {
         super();
         this.display = 'grid';
-        this.gap = 16;
+        this.style['gap'] = '16px';
         this.padding = 16;
         this.style.paddingTop = '72px';
         this.style.paddingBottom = '72px';
-        this.gridTemplateColumns = 'repeat(auto-fill, minmax(150px, 1fr))';
+        this.style['gridTemplateColumns'] = 'repeat(auto-fill, minmax(150px, 1fr))';
         this.DataRendererClass = MobileMoviePreviewRenderer;
         this.dataProvider = this.movies;
     }
