@@ -19,7 +19,8 @@
       "prefer-template": "off",
       "linebreak-style": "off",
       "max-len": "off",
-      "no-new": "off"
+      "no-new": "off",
+      "@typescript-eslint/dot-notation": "off"
     },
     "env": {
         "browser": true                     // makes HTMLElement and customElements NOT no-undef
