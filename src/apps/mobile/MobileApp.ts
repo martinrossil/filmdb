@@ -24,6 +24,8 @@ export default class MobileApp extends Container implements IMobileApp {
     public get mobileMoviesList(): IMobileMoviesList {
         if (!this.#mobileMoviesList) {
             this.#mobileMoviesList = new MobileMoviesList();
+            this.#mobileMoviesList.left = 0;
+            this.#mobileMoviesList.right = 0;
         }
         return this.#mobileMoviesList;
     }
