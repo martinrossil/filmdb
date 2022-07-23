@@ -1,61 +1,63 @@
-import { Container } from 'fuix';
-import IMobileApp from './IMobileApp';
-import IMobileBottomNavigation from './IMobileBottomNavigation';
-import IMobileMoviesList from './IMobileMoviesList';
-import IMobileTopBar from './IMobileTopBar';
-import MobileBottomNavigation from './MobileBottomNavigation';
-import MobileMoviesList from './MobileMoviesList';
-import MobileTopBar from './MobileTopBar';
+import { Container, DataContainer, IContainer } from 'fuix';
+import Model from '../../observables/Model';
+import IColors from '../../theme/IColors';
+import Theme from '../../theme/Theme';
+import IMoviePreview from '../../domain/IMoviePreview';
+import MovieRenderer from './MovieRenderer';
 
-export default class MobileApp extends Container implements IMobileApp {
+export default class MobileApp extends Container {
     public constructor() {
         super();
-        this.addComponents(
-            [
-                this.mobileMoviesList,
-                this.mobileBottomNavigation,
-                this.mobileTopBar,
-            ],
-        );
+        this.addComponents([this.moviesList, this.navigation, this.topBar]);
     }
 
-    #mobileMoviesList!: IMobileMoviesList;
+    #colors: IColors = Theme.singleton.colors;
 
-    public get mobileMoviesList(): IMobileMoviesList {
-        if (!this.#mobileMoviesList) {
-            this.#mobileMoviesList = new MobileMoviesList();
-            this.#mobileMoviesList.left = 0;
-            this.#mobileMoviesList.right = 0;
+    #moviesList!: DataContainer<IMoviePreview>;
+
+    private get moviesList(): DataContainer<IMoviePreview> {
+        if (!this.#moviesList) {
+            this.#moviesList = new DataContainer();
+            this.#moviesList.display = 'grid';
+            this.#moviesList.style['gap'] = '8px';
+            this.#moviesList.padding = 8;
+            this.#moviesList.style.paddingTop = '64px';
+            this.#moviesList.style.paddingBottom = '88px';
+            this.#moviesList.style['gridTemplateColumns'] = 'repeat(auto-fill, minmax(150px, 1fr))';
+            this.#moviesList.DataRendererClass = MovieRenderer;
+            this.#moviesList.dataProvider = Model.singleton.movies;
         }
-        return this.#mobileMoviesList;
+        return this.#moviesList;
     }
 
-    #mobileBottomNavigation!: IMobileBottomNavigation;
+    #navigation!: IContainer;
 
-    public get mobileBottomNavigation(): IMobileBottomNavigation {
-        if (!this.#mobileBottomNavigation) {
-            this.#mobileBottomNavigation = new MobileBottomNavigation();
-            this.#mobileBottomNavigation.position = 'fixed';
-            this.#mobileBottomNavigation.height = 56;
-            this.#mobileBottomNavigation.left = 0;
-            this.#mobileBottomNavigation.right = 0;
-            this.#mobileBottomNavigation.bottom = 0;
+    private get navigation(): IContainer {
+        if (!this.#navigation) {
+            this.#navigation = new Container();
+            this.#navigation.backgroundColor = this.#colors.primary.COLOR_700;
+            this.#navigation.position = 'fixed';
+            this.#navigation.height = 80;
+            this.#navigation.left = 0;
+            this.#navigation.right = 0;
+            this.#navigation.bottom = 0;
         }
-        return this.#mobileBottomNavigation;
+        return this.#navigation;
     }
 
-    #mobileTopBar!: IMobileTopBar;
+    #topBar!: IContainer;
 
-    public get mobileTopBar(): IMobileTopBar {
-        if (!this.#mobileTopBar) {
-            this.#mobileTopBar = new MobileTopBar();
-            this.#mobileTopBar.position = 'fixed';
-            this.#mobileTopBar.height = 56;
-            this.#mobileTopBar.top = 0;
-            this.#mobileTopBar.left = 0;
-            this.#mobileTopBar.right = 0;
+    public get topBar(): IContainer {
+        if (!this.#topBar) {
+            this.#topBar = new Container();
+            this.#topBar.backgroundColor = this.#colors.primary.COLOR_900;
+            this.#topBar.position = 'fixed';
+            this.#topBar.height = 56;
+            this.#topBar.top = 0;
+            this.#topBar.left = 0;
+            this.#topBar.right = 0;
         }
-        return this.#mobileTopBar;
+        return this.#topBar;
     }
 }
 customElements.define('mobile-app', MobileApp);
