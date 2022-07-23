@@ -16,7 +16,7 @@ export default class Device extends EventTarget implements IDevice {
 
     public constructor() {
         super();
-        this.#device = this.#getDevice();
+        this.#name = this.#getDevice();
         this.#orientation = this.#getOrientation();
         window.addEventListener('resize', this.#resize.bind(this));
     }
@@ -24,17 +24,17 @@ export default class Device extends EventTarget implements IDevice {
     #resize(): void {
         const device = this.#getDevice();
         const orientation = this.#getOrientation();
-        if (this.#device !== device || this.#orientation !== orientation) {
-            this.#device = device;
+        if (this.#name !== device || this.#orientation !== orientation) {
+            this.#name = device;
             this.#orientation = orientation;
-            this.dispatchEvent(new CustomEvent(Device.CHANGED, { detail: this.#device }));
+            this.dispatchEvent(new CustomEvent(Device.CHANGED));
         }
     }
 
-    #device: Devices;
+    #name: Devices;
 
-    public get device(): Devices {
-        return this.#device;
+    public get name(): Devices {
+        return this.#name;
     }
 
     #orientation: Orientations;
@@ -55,9 +55,9 @@ export default class Device extends EventTarget implements IDevice {
             return 'mobile';
         }
         if (window.innerWidth <= 1280) {
-            if (orientation === 'landscape') {
-                return 'tablet';
-            }
+            return 'tablet';
+        }
+        if (window.innerWidth <= 1600) {
             return 'laptop';
         }
         return 'desktop';
