@@ -12,6 +12,7 @@
     },
     "ignorePatterns": ["/lib"],
     "rules": {
+      "@typescript-eslint/dot-notation": "off",
       "@typescript-eslint/indent": "off",
       "class-methods-use-this": "off",
       "object-curly-newline": "off",
@@ -20,7 +21,7 @@
       "linebreak-style": "off",
       "max-len": "off",
       "no-new": "off",
-      "@typescript-eslint/dot-notation": "off"
+      "no-underscore-dangle": "off"
     },
     "env": {
         "browser": true                     // makes HTMLElement and customElements NOT no-undef
