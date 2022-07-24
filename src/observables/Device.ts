@@ -5,46 +5,46 @@ import IDevice from './IDevice';
 export default class Device extends EventTarget implements IDevice {
     public static CHANGED = 'CHANGED';
 
-    static #singleton: IDevice;
+    private static _singleton: IDevice;
 
     public static get singleton(): IDevice {
-        if (!this.#singleton) {
-            this.#singleton = new Device();
+        if (!this._singleton) {
+            this._singleton = new Device();
         }
-        return this.#singleton;
+        return this._singleton;
     }
 
     public constructor() {
         super();
-        this.#name = this.#getDevice();
-        this.#orientation = this.#getOrientation();
-        window.addEventListener('resize', this.#resize.bind(this));
+        this._name = this.getDevice();
+        this._orientation = this.getOrientation();
+        window.addEventListener('resize', this.resize.bind(this));
     }
 
-    #resize(): void {
-        const device = this.#getDevice();
-        const orientation = this.#getOrientation();
-        if (this.#name !== device || this.#orientation !== orientation) {
-            this.#name = device;
-            this.#orientation = orientation;
+    private resize(): void {
+        const device = this.getDevice();
+        const orientation = this.getOrientation();
+        if (this.name !== device || this.orientation !== orientation) {
+            this._name = device;
+            this._orientation = orientation;
             this.dispatchEvent(new CustomEvent(Device.CHANGED));
         }
     }
 
-    #name: Devices;
+    private _name: Devices;
 
     public get name(): Devices {
-        return this.#name;
+        return this._name;
     }
 
-    #orientation: Orientations;
+    private _orientation: Orientations;
 
     public get orientation(): Orientations {
-        return this.#orientation;
+        return this._orientation;
     }
 
-    #getDevice(): Devices {
-        const orientation = this.#getOrientation();
+    private getDevice(): Devices {
+        const orientation = this.getOrientation();
         if (window.innerWidth <= 600) {
             return 'mobile';
         }
@@ -63,7 +63,7 @@ export default class Device extends EventTarget implements IDevice {
         return 'desktop';
     }
 
-    #getOrientation(): Orientations {
+    private getOrientation(): Orientations {
         if (window.innerWidth <= window.innerHeight) {
             return 'portrait';
         }

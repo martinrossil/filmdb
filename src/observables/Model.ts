@@ -4,25 +4,25 @@ import MoviePreview from '../domain/MoviePreview';
 import IModel from './IModel';
 
 export default class Model implements IModel {
-    static #singleton: IModel;
+    private static _singleton: IModel;
 
     public static get singleton(): IModel {
-        if (!this.#singleton) {
-            this.#singleton = new Model();
+        if (!this._singleton) {
+            this._singleton = new Model();
         }
-        return this.#singleton;
+        return this._singleton;
     }
 
-    #movies!: IArrayCollection<IMoviePreview>;
+    private _movies!: IArrayCollection<IMoviePreview>;
 
     public get movies(): IArrayCollection<IMoviePreview> {
-        if (!this.#movies) {
+        if (!this._movies) {
             const movies: Array<IMoviePreview> = [];
             for (let i = 0; i < 60; i += 1) {
                 movies.push(new MoviePreview({ uid: i }));
             }
-            this.#movies = new ArrayCollection(movies);
+            this._movies = new ArrayCollection(movies);
         }
-        return this.#movies;
+        return this._movies;
     }
 }

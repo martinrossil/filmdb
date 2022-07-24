@@ -11,53 +11,53 @@ export default class MobileApp extends Container {
         this.addComponents([this.moviesList, this.navigation, this.topBar]);
     }
 
-    #colors: IColors = Theme.singleton.colors;
+    private colors: IColors = Theme.singleton.colors;
 
-    #moviesList!: DataContainer<IMoviePreview>;
+    private _moviesList!: DataContainer<IMoviePreview>;
 
     private get moviesList(): DataContainer<IMoviePreview> {
-        if (!this.#moviesList) {
-            this.#moviesList = new DataContainer();
-            this.#moviesList.display = 'grid';
-            this.#moviesList.style['gap'] = '8px';
-            this.#moviesList.padding = 8;
-            this.#moviesList.style.paddingTop = '64px';
-            this.#moviesList.style.paddingBottom = '88px';
-            this.#moviesList.style['gridTemplateColumns'] = 'repeat(auto-fill, minmax(150px, 1fr))';
-            this.#moviesList.DataRendererClass = MovieRenderer;
-            this.#moviesList.dataProvider = Model.singleton.movies;
+        if (!this._moviesList) {
+            this._moviesList = new DataContainer();
+            this._moviesList.display = 'grid';
+            this._moviesList.gap = 8;
+            this._moviesList.padding = 8;
+            this._moviesList.style.paddingTop = '64px';
+            this._moviesList.style.paddingBottom = '88px';
+            this._moviesList.gridTemplateColumns = 'repeat(auto-fill, minmax(150px, 1fr))';
+            this._moviesList.DataRendererClass = MovieRenderer;
+            this._moviesList.dataProvider = Model.singleton.movies;
         }
-        return this.#moviesList;
+        return this._moviesList;
     }
 
-    #navigation!: IContainer;
+    private _navigation!: IContainer;
 
     private get navigation(): IContainer {
-        if (!this.#navigation) {
-            this.#navigation = new Container();
-            this.#navigation.backgroundColor = this.#colors.primary.COLOR_700;
-            this.#navigation.position = 'fixed';
-            this.#navigation.height = 80;
-            this.#navigation.left = 0;
-            this.#navigation.right = 0;
-            this.#navigation.bottom = 0;
+        if (!this._navigation) {
+            this._navigation = new Container();
+            this._navigation.backgroundColor = this.colors.primary.COLOR_700;
+            this._navigation.position = 'fixed';
+            this._navigation.height = 80;
+            this._navigation.left = 0;
+            this._navigation.right = 0;
+            this._navigation.bottom = 0;
         }
-        return this.#navigation;
+        return this._navigation;
     }
 
-    #topBar!: IContainer;
+    private _topBar!: IContainer;
 
     public get topBar(): IContainer {
-        if (!this.#topBar) {
-            this.#topBar = new Container();
-            this.#topBar.backgroundColor = this.#colors.primary.COLOR_900;
-            this.#topBar.position = 'fixed';
-            this.#topBar.height = 56;
-            this.#topBar.top = 0;
-            this.#topBar.left = 0;
-            this.#topBar.right = 0;
+        if (!this._topBar) {
+            this._topBar = new Container();
+            this._topBar.backgroundColor = this.colors.primary.COLOR_900;
+            this._topBar.position = 'fixed';
+            this._topBar.height = 56;
+            this._topBar.top = 0;
+            this._topBar.left = 0;
+            this._topBar.right = 0;
         }
-        return this.#topBar;
+        return this._topBar;
     }
 }
 customElements.define('mobile-app', MobileApp);

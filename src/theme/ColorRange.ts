@@ -14,82 +14,82 @@ export default class ColorRange implements IColorRange {
         COLOR_800: string,
         COLOR_900: string,
         ) {
-        this.#COLOR_25 = COLOR_25;
-        this.#COLOR_50 = COLOR_50;
-        this.#COLOR_100 = COLOR_100;
-        this.#COLOR_200 = COLOR_200;
-        this.#COLOR_300 = COLOR_300;
-        this.#COLOR_400 = COLOR_400;
-        this.#COLOR_500 = COLOR_500;
-        this.#COLOR_600 = COLOR_600;
-        this.#COLOR_700 = COLOR_700;
-        this.#COLOR_800 = COLOR_800;
-        this.#COLOR_900 = COLOR_900;
+        this._COLOR_25 = COLOR_25;
+        this._COLOR_50 = COLOR_50;
+        this._COLOR_100 = COLOR_100;
+        this._COLOR_200 = COLOR_200;
+        this._COLOR_300 = COLOR_300;
+        this._COLOR_400 = COLOR_400;
+        this._COLOR_500 = COLOR_500;
+        this._COLOR_600 = COLOR_600;
+        this._COLOR_700 = COLOR_700;
+        this._COLOR_800 = COLOR_800;
+        this._COLOR_900 = COLOR_900;
     }
 
-    #COLOR_25: string;
+    private _COLOR_25: string;
 
     public get COLOR_25(): string {
-        return this.#COLOR_25;
+        return this._COLOR_25;
     }
 
-    #COLOR_50: string;
+    private _COLOR_50: string;
 
     public get COLOR_50(): string {
-        return this.#COLOR_50;
+        return this._COLOR_50;
     }
 
-    #COLOR_100: string;
+    private _COLOR_100: string;
 
     public get COLOR_100(): string {
-        return this.#COLOR_100;
+        return this._COLOR_100;
     }
 
-    #COLOR_200: string;
+    private _COLOR_200: string;
 
     public get COLOR_200(): string {
-        return this.#COLOR_200;
+        return this._COLOR_200;
     }
 
-    #COLOR_300: string;
+    private _COLOR_300: string;
 
     public get COLOR_300(): string {
-        return this.#COLOR_300;
+        return this._COLOR_300;
     }
 
-    #COLOR_400: string;
+    private _COLOR_400: string;
 
     public get COLOR_400(): string {
-        return this.#COLOR_400;
+        return this._COLOR_400;
     }
 
-    #COLOR_500: string;
+    private _COLOR_500: string;
 
     public get COLOR_500(): string {
-        return this.#COLOR_500;
+        return this._COLOR_500;
     }
 
-    #COLOR_600: string;
+    private _COLOR_600: string;
 
     public get COLOR_600(): string {
-        return this.#COLOR_600;
+        return this._COLOR_600;
     }
 
-    #COLOR_700: string;
+    private _COLOR_700: string;
 
     public get COLOR_700(): string {
-        return this.#COLOR_700;
+        return this._COLOR_700;
     }
 
-    #COLOR_800: string;
+    private _COLOR_800: string;
 
     public get COLOR_800(): string {
-        return this.#COLOR_800;
+        return this._COLOR_800;
     }
 
-    #COLOR_900: string;
+    private _COLOR_900: string;
 
     public get COLOR_900(): string {
-        return this.#COLOR_900;
+        return this._COLOR_900;
     }
 }

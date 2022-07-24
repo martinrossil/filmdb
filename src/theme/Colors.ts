@@ -3,47 +3,47 @@ import IColors from './IColors';
 
 export default class Colors implements IColors {
     public constructor(primary: IColorRange, secondary: IColorRange, neutral: IColorRange, success: IColorRange, warning: IColorRange, error: IColorRange) {
-        this.#primary = primary;
-        this.#secondary = secondary;
-        this.#neutral = neutral;
-        this.#success = success;
-        this.#warning = warning;
-        this.#error = error;
+        this._primary = primary;
+        this._secondary = secondary;
+        this._neutral = neutral;
+        this._success = success;
+        this._warning = warning;
+        this._error = error;
     }
 
-    #primary: IColorRange;
+    private _primary: IColorRange;
 
     public get primary(): IColorRange {
-        return this.#primary;
+        return this._primary;
     }
 
-    #secondary: IColorRange;
+    private _secondary: IColorRange;
 
     public get secondary(): IColorRange {
-        return this.#secondary;
+        return this._secondary;
     }
 
-    #neutral: IColorRange;
+    private _neutral: IColorRange;
 
     public get neutral(): IColorRange {
-        return this.#neutral;
+        return this._neutral;
     }
 
-    #success: IColorRange;
+    private _success: IColorRange;
 
     public get success(): IColorRange {
-        return this.#success;
+        return this._success;
     }
 
-    #warning: IColorRange;
+    private _warning: IColorRange;
 
     public get warning(): IColorRange {
-        return this.#warning;
+        return this._warning;
     }
 
-    #error: IColorRange;
+    private _error: IColorRange;
 
     public get error(): IColorRange {
-        return this.#error;
+        return this._error;
     }
 }
