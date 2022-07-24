@@ -12,14 +12,14 @@ export default [{
                 contentBase: 'development',
                 open: true,
                 historyApiFallback: true,
-                port: 10003
+                port: 10003,
             }),
-            livereload()
+            livereload(),
         ],
         output: {
             file: './development/esnext.js',
             format: 'esm',
-            sourcemap: 'inline'
-        }
-    }
-]
+            sourcemap: 'inline',
+        },
+    },
+];
